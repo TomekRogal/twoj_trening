@@ -16,6 +16,7 @@
     <form:errors  path="name"/><br>
     Sets: <form:input type="number" min ="0" max ="10" path="sets" /> <br>
     <form:errors  path="sets"/><br>
+
     Reps: <form:input path="reps" /> <br>
     <form:errors  path="reps"/><br>
     Weight: <form:input path="weight" /> <br>

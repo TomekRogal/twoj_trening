@@ -15,9 +15,12 @@ import javax.validation.Valid;
 @Controller
 public class TrainingController {
     private final TrainingRepository trainingRepository;
+    private final SetsRepository setsRepository;
 
-    public TrainingController(TrainingRepository exerciseRepository) {
+
+    public TrainingController(TrainingRepository exerciseRepository, SetsRepository setsRepository) {
         this.trainingRepository = exerciseRepository;
+        this.setsRepository = setsRepository;
     }
     @RequestMapping("/training/all")
     public String findAll(Model model) {

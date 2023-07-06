@@ -1,6 +1,7 @@
 package pl.coderslab.springboot.training;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -9,10 +10,12 @@ public class Training {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private int sets;
+//    private int sets;
+    @OneToMany
+    private List <Sets> sets;
 
-    private int reps ;
-    private Double weight;
+//    private int reps ;
+//    private Double weight;
 
     public Long getId() {
         return id;
@@ -30,27 +33,27 @@ public class Training {
         this.name = name;
     }
 
-    public int getSets() {
-        return sets;
-    }
+//    public int getSets() {
+//        return sets;
+//    }
+//
+//    public void setSets(int sets) {
+//        this.sets = sets;
+//    }
 
-    public void setSets(int sets) {
-        this.sets = sets;
-    }
-
-    public int getReps() {
-        return reps;
-    }
-
-    public void setReps(int reps) {
-        this.reps = reps;
-    }
-
-    public Double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Double weight) {
-        this.weight = weight;
-    }
+//    public int getReps() {
+//        return reps;
+//    }
+//
+//    public void setReps(int reps) {
+//        this.reps = reps;
+//    }
+//
+//    public Double getWeight() {
+//        return weight;
+//    }
+//
+//    public void setWeight(Double weight) {
+//        this.weight = weight;
+//    }
 }
