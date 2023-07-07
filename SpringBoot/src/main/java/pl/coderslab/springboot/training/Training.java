@@ -14,6 +14,13 @@ public class Training {
     @OneToMany
     private List <Sets> sets;
 
+    public List<Sets> getSets() {
+        return sets;
+    }
+
+    public void setSets(List<Sets> sets) {
+        this.sets = sets;
+    }
 //    private int reps ;
 //    private Double weight;
 

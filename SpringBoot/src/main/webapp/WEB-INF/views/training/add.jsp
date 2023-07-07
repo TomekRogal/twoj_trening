@@ -14,14 +14,8 @@
     <form:hidden path="id"/>
     Name: <form:input path="name" /> <br>
     <form:errors  path="name"/><br>
-    Sets: <form:input type="number" min ="0" max ="10" path="sets" /> <br>
-    <form:errors  path="sets"/><br>
-
-    Reps: <form:input path="reps" /> <br>
-    <form:errors  path="reps"/><br>
-    Weight: <form:input path="weight" /> <br>
-    <form:errors  path="weight"/><br>
     <input type="submit" value="Save">
 </form:form>
+
 </body>
 </html>
