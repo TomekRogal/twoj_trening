@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script type="text/javascript"  src='<c:url value="/scripts/delete.js"/>'></script>
 <html>
 <head>
   <title>Title</title>
@@ -35,7 +36,7 @@
       <td>
         <a href="/plan/edit/${plan.id}" >Edit</a>
         <a href="/plan/show/${plan.id}" >Show</a>
-        <a href="/plan/delete/${plan.id}" onclick="return confirm('Czy na pewno chcesz usnąć')">Delete</a>
+        <a href="/plan/delete/${plan.id}" class="delete-link">delete</a>
         <a href="/plan/training/add/${plan.id}" >Add training to plan</a>
       </td>
     </tr>
@@ -59,7 +60,7 @@
       <td>
         <a href="/training/edit/${training.training.id}" >Edit</a>
         <a href="/training/show/${training.training.id}" >Show</a>
-        <a href="/plan/training/delete/${training.id}" onclick="return confirm('Czy na pewno chcesz usnąć')">Delete</a>
+        <a href="/plan/training/delete/${training.id}" class="delete-link">delete</a>
       </td>
     </tr>
   </c:forEach>
