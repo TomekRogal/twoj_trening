@@ -1,4 +1,4 @@
-package pl.coderslab.springboot.training;
+package pl.coderslab.springboot.sets;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

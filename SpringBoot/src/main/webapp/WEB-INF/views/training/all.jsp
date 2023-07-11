@@ -33,9 +33,9 @@
     <c:forEach items="${trainings}" var="training">
         <tr>
             <td>${training.name}</td>
-            <td>${training.sets}</td>
-            <td>${training.reps}</td>
-            <td>${training.weight} kg</td>
+<%--            <td>${training.sets}</td>--%>
+<%--            <td>${training.reps}</td>--%>
+<%--            <td>${training.weight} kg</td>--%>
 
             <td>
                 <a href="/training/edit/${training.id}" >Edit</a>

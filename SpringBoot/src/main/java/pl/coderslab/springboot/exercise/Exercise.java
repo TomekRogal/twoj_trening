@@ -1,30 +1,18 @@
-package pl.coderslab.springboot.training;
+package pl.coderslab.springboot.exercise;
 
-import pl.coderslab.springboot.exercise.Exercise;
+import pl.coderslab.springboot.sets.Sets;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.List;
 
-
 @Entity
-public class Training {
+public class Exercise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @OneToMany
-    private List<Exercise> exercises;
-    private LocalDate date;
-
-    public List<Exercise> getExercises() {
-        return exercises;
-    }
-
-    public void setExercises(List<Exercise> exercises) {
-        this.exercises = exercises;
-    }
-
+    private List<Sets> sets;
 
     public Long getId() {
         return id;
@@ -41,4 +29,13 @@ public class Training {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void setSets(List<Sets> sets) {
+        this.sets = sets;
+    }
+
+    public List<Sets> getSets() {
+        return sets;
+    }
+
 }

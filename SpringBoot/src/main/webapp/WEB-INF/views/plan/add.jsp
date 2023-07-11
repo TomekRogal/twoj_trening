@@ -8,18 +8,16 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Edit Training</h1>
+<h1>Dodaj plan</h1>
 <form:form method="post"
-           modelAttribute="training">
+           modelAttribute="plan">
     <form:hidden path="id"/>
-    Name: <form:input path="name" /> <br>
+    Nazwa: <form:input path="name" /> <br>
     <form:errors  path="name"/><br>
-<%--    Sets: <form:input path="sets" /> <br>--%>
-<%--    <form:errors  path="sets"/><br>--%>
-<%--    Reps: <form:input path="reps" /> <br>--%>
-<%--    <form:errors  path="reps"/><br>--%>
-<%--    Weight: <form:input path="weight" /> <br>--%>
-<%--    <form:errors  path="weight"/><br>--%>
+    Początek: <form:input type="date" path="startDate" /> <br>
+    <form:errors  path="startDate"/><br>
+    Koniec: <form:input type="date" path="endDate" /> <br>
+    <form:errors  path="endDate"/><br>
     <input type="submit" value="Save">
 </form:form>
 </body>

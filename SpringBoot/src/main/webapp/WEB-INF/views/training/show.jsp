@@ -33,9 +33,9 @@
 
         <tr>
             <td>${training.name}</td>
-            <td>${training.sets}</td>
-            <td>${training.reps}</td>
-            <td>${training.weight}</td>
+<%--            <td>${training.sets}</td>--%>
+<%--            <td>${training.reps}</td>--%>
+<%--            <td>${training.weight}</td>--%>
 
             <td>
                 <a href="/training/all" >All</a>

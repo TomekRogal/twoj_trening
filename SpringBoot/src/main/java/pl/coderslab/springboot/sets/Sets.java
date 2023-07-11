@@ -1,4 +1,4 @@
-package pl.coderslab.springboot.training;
+package pl.coderslab.springboot.sets;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
