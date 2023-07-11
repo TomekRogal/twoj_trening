@@ -22,9 +22,6 @@
     <thead>
     <tr>
         <td>Name</td>
-        <td>Sets</td>
-        <td>Reps</td>
-        <td>Weight</td>
         <td>Actions</td>
 
     </tr>
@@ -41,9 +38,38 @@
                 <a href="/training/all" >All</a>
                 <a href="/training/edit/${training.id}" >Edit</a>
                 <a href="/training/delete/${training.id}" onclick="return confirm('Czy na pewno chcesz usnąć')">Delete</a>
+                <a href="/training/exercise/add/${training.id}" >Dodaj ćwiczenie</a>
             </td>
         </tr>
     </tbody>
+</table>
+<br>
+<h1>ĆWICZENIA:</h1>
+<br>
+<table>
+    <thead>
+    <tr>
+        <td>Nazwa</td>
+        <td>Serie</td>
+        <td>Powtórzenia</td>
+        <td>Ciężar</td>
+        <td>Actions</td>
+    </tr>
+    </thead>
+    <c:forEach items="${exercises}" var="exercise">
+        <tr>
+            <td>${exercise.exercise.name}</td>
+            <td>${exercise.sets}</td>
+            <td>${exercise.reps}</td>
+            <td>${exercise.weight}</td>
+            <td>
+                <a href="/exercise/edit/${exercise.exercise.id}" >Edit</a>
+                <a href="/exercise/show/${exercise.exercise.id}" >Show</a>
+                <a href="/training/exercise/delete/${exercise.id}" onclick="return confirm('Czy na pewno chcesz usnąć')">Delete</a>
+            </td>
+        </tr>
+    </c:forEach>
+
 </table>
 </body>
 </html>

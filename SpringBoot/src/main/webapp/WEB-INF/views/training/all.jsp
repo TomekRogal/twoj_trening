@@ -22,9 +22,6 @@
     <thead>
     <tr>
         <td>Name</td>
-        <td>Sets</td>
-        <td>Reps</td>
-        <td>Weight</td>
         <td>Actions</td>
 
     </tr>
@@ -41,6 +38,7 @@
                 <a href="/training/edit/${training.id}" >Edit</a>
                 <a href="/training/show/${training.id}" >Show</a>
                 <a href="/training/delete/${training.id}" onclick="return confirm('Czy na pewno chcesz usnąć')">Delete</a>
+                <a href="/training/exercise/add/${training.id}" >Dodaj ćwiczenie</a>
             </td>
         </tr>
     </c:forEach>

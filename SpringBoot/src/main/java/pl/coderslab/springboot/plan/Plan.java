@@ -1,10 +1,8 @@
 package pl.coderslab.springboot.plan;
 
-import pl.coderslab.springboot.training.Training;
 import pl.coderslab.springboot.user.User;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Plan {
@@ -14,8 +12,6 @@ public class Plan {
     private String name;
     private String startDate;
     private String endDate;
-    @OneToMany
-    private List<Training> trainings;
     @ManyToOne
     private User user;
 
@@ -59,11 +55,4 @@ public class Plan {
         this.user = user;
     }
 
-    public List<Training> getTrainings() {
-        return trainings;
-    }
-
-    public void setTrainings(List<Training> trainings) {
-        this.trainings = trainings;
-    }
 }

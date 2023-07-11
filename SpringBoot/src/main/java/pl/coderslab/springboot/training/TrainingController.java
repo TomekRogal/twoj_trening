@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.coderslab.springboot.sets.SetsRepository;
+import pl.coderslab.springboot.trainingexercise.TrainingExerciseRepository;
+
 
 import javax.validation.Valid;
 
@@ -15,12 +16,15 @@ import javax.validation.Valid;
 @Controller
 public class TrainingController {
     private final TrainingRepository trainingRepository;
-    private final SetsRepository setsRepository;
+    private final TrainingExerciseRepository trainingExerciseRepository;
 
 
-    public TrainingController(TrainingRepository exerciseRepository, SetsRepository setsRepository) {
+
+
+    public TrainingController(TrainingRepository exerciseRepository, TrainingExerciseRepository trainingExerciseRepository) {
         this.trainingRepository = exerciseRepository;
-        this.setsRepository = setsRepository;
+
+        this.trainingExerciseRepository = trainingExerciseRepository;
     }
 
     @RequestMapping("/training/all")
@@ -43,11 +47,11 @@ public class TrainingController {
     }
 
     @PostMapping("/training/add")
-    public String addProcess(@Valid Training exercise, BindingResult bindingResult) {
+    public String addProcess(@Valid Training training, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "training/add";
         }
-        trainingRepository.save(exercise);
+        trainingRepository.save(training);
         return "redirect:/training/all";
     }
 
@@ -58,17 +62,18 @@ public class TrainingController {
     }
 
     @PostMapping("/training/edit/{id}")
-    public String editProcess(@Valid Training exercise, BindingResult bindingResult) {
+    public String editProcess(@Valid Training training, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "training/edit";
         }
-        trainingRepository.save(exercise);
+        trainingRepository.save(training);
         return "redirect:/training/all";
     }
 
     @GetMapping("/training/show/{id}")
     public String show(@PathVariable Long id, Model model) {
         model.addAttribute("training", trainingRepository.findById(id).get());
+        model.addAttribute("exercises",trainingExerciseRepository.findAllExercisesFromTraining(trainingRepository.findById(id).get()));
         return "training/show";
     }
 

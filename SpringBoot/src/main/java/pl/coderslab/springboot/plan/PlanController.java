@@ -7,16 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.coderslab.springboot.training.Training;
+import pl.coderslab.springboot.plantraining.PlanTrainingRepository;
+
 
 import javax.validation.Valid;
 
 @Controller
 public class PlanController {
     private final PlanRepository planRepository;
+    private final PlanTrainingRepository planTrainingRepository;
 
-    public PlanController(PlanRepository planRepository) {
+    public PlanController(PlanRepository planRepository, PlanTrainingRepository planTrainingRepository) {
         this.planRepository = planRepository;
+        this.planTrainingRepository = planTrainingRepository;
     }
     @RequestMapping("/plan/all")
     public String findAll(Model model) {
@@ -59,6 +62,7 @@ public class PlanController {
     @GetMapping("/plan/show/{id}")
     public String show(@PathVariable Long id, Model model) {
         model.addAttribute("plan", planRepository.findById(id).get());
+        model.addAttribute("trainings",planTrainingRepository.findAllTrainingsFromPlan(planRepository.findById(id).get()));
         return "plan/show";
     }
 

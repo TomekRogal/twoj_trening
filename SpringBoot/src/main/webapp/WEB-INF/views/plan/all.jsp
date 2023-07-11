@@ -39,6 +39,7 @@
                 <a href="/plan/edit/${plan.id}" >Edit</a>
                 <a href="/plan/show/${plan.id}" >Show</a>
                 <a href="/plan/delete/${plan.id}" onclick="return confirm('Czy na pewno chcesz usnąć')">Delete</a>
+                <a href="/plan/training/add/${plan.id}" >Add training to plan</a>
             </td>
         </tr>
     </c:forEach>
