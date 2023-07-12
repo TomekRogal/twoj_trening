@@ -3,10 +3,10 @@
 /*------------------------------*/
 :root {
   --link-color: #1f1f04;
-  --light-link-color: #223898;
-  --background-color: #d0c229;
-  --lighter-background-color: #797d88;
-  --lighter-text-color: #9fa292;
+  --light-link-color: #304f6d;
+  --background-color: #f3d250;
+  --lighter-background-color: #f78888;
+  --lighter-text-color: #ececec;
   --dark-text: #000000;
   --blue: #007bff;
   --yellow: #ffc107;
@@ -34,7 +34,7 @@ p {
 }
 
 .bg-light {
-background: #EAEAEA;
+background: #ececec;
 }
 
 .noPadding {
@@ -149,11 +149,11 @@ margin: 0 auto !important;
 }
 
 .main-logo {
-  font-family: "Charmonman", cursive;
+  font-family: "Arial";
   display: inline-block;
   color: var(--light-link-color)!important;
   margin-top: 10px;
-  font-size: 2.7rem;
+  font-size: 2.8rem;
   font-weight: 600;
 }
 
