@@ -41,5 +41,10 @@
     </c:forEach>
     </tbody>
 </table>
+<div>
+    <c:if test='${delete.equals("failed")}'>
+        <p  style="color:red" > Nie można usunąć ćwiczenia</p>
+    </c:if>
+</div>
 </body>
 </html>

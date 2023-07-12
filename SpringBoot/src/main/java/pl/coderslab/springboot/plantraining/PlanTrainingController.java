@@ -42,10 +42,13 @@ public class PlanTrainingController {
     }
     @GetMapping("/plan/training/add/{id}")
     public String add(@PathVariable Long id, Model model) {
-        PlanTraining planTraining = new PlanTraining();
-        planTraining.setPlan(planRepository.findById(id).get());
-        model.addAttribute("planTraining", planTraining);
-        return "plantraining/add";
+        if(planRepository.findById(id).isPresent()){
+            PlanTraining planTraining = new PlanTraining();
+            planTraining.setPlan(planRepository.findById(id).get());
+            model.addAttribute("planTraining", planTraining);
+            return "plantraining/add";
+        }
+        return "redirect:/plan/all";
     }
 
     @PostMapping("/plan/training/add")
@@ -58,8 +61,11 @@ public class PlanTrainingController {
     }
     @RequestMapping("/plan/training/delete/{id}")
     public String delete(@PathVariable Long id) {
-        PlanTraining planTraining = planTrainingRepository.findById(id).get();
-        planTrainingRepository.deleteById(id);
-        return "redirect:/plan/show/"+planTraining.getPlan().getId();
+        if(planTrainingRepository.findById(id).isPresent()){
+            PlanTraining planTraining = planTrainingRepository.findById(id).get();
+            planTrainingRepository.deleteById(id);
+            return "redirect:/plan/show/"+planTraining.getPlan().getId();
+        }
+        return "redirect:/plan/all";
     }
 }

@@ -30,9 +30,12 @@ public class TrainingExerciseController {
     @GetMapping("/training/exercise/add/{id}")
     public String add(@PathVariable Long id, Model model) {
         TrainingExercise trainingExercise = new TrainingExercise();
-        trainingExercise.setTraining(trainingRepository.findById(id).get());
-        model.addAttribute("trainingExercise", trainingExercise);
-        return "trainingexercise/add";
+        if(trainingRepository.findById(id).isPresent()){
+            trainingExercise.setTraining(trainingRepository.findById(id).get());
+            model.addAttribute("trainingExercise", trainingExercise);
+            return "trainingexercise/add";
+        }
+        return "redirect:/training/all";
     }
 
     @PostMapping("/training/exercise/add")
@@ -45,8 +48,11 @@ public class TrainingExerciseController {
     }
     @RequestMapping("/training/exercise/delete/{id}")
     public String delete(@PathVariable Long id) {
-        TrainingExercise trainingExercise = trainingExerciseRepository.findById(id).get();
-        trainingExerciseRepository.deleteById(id);
-        return "redirect:/plan/show/"+trainingExercise.getTraining().getId();
+        if(trainingExerciseRepository.findById(id).isPresent()){
+            TrainingExercise trainingExercise = trainingExerciseRepository.findById(id).get();
+            trainingExerciseRepository.deleteById(id);
+            return "redirect:/plan/show/"+trainingExercise.getTraining().getId();
+        }
+        return "redirect:/training/all";
     }
 }

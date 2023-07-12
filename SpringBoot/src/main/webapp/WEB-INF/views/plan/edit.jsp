@@ -12,6 +12,7 @@
 <form:form method="post"
            modelAttribute="plan">
   <form:hidden path="id"/>
+  <form:hidden path="user"/>
   Nazwa: <form:input path="name" /> <br>
   <form:errors  path="name"/><br>
   Początek: <form:input type="date" path="startDate" /> <br>

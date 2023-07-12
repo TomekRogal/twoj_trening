@@ -32,10 +32,6 @@
     <c:forEach items="${trainings}" var="training">
         <tr>
             <td>${training.name}</td>
-<%--            <td>${training.sets}</td>--%>
-<%--            <td>${training.reps}</td>--%>
-<%--            <td>${training.weight} kg</td>--%>
-
             <td>
                 <a href="/training/edit/${training.id}" >Edit</a>
                 <a href="/training/show/${training.id}" >Show</a>
@@ -46,5 +42,10 @@
     </c:forEach>
     </tbody>
 </table>
+<div>
+    <c:if test='${delete.equals("failed")}'>
+        <p  style="color:red" > Nie można usunąć treningu</p>
+    </c:if>
+</div>
 </body>
 </html>

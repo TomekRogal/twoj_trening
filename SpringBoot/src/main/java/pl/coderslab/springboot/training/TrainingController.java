@@ -19,8 +19,6 @@ public class TrainingController {
     private final TrainingExerciseRepository trainingExerciseRepository;
 
 
-
-
     public TrainingController(TrainingRepository exerciseRepository, TrainingExerciseRepository trainingExerciseRepository) {
         this.trainingRepository = exerciseRepository;
 
@@ -34,9 +32,14 @@ public class TrainingController {
     }
 
     @RequestMapping("/training/delete/{id}")
-    public String delete(@PathVariable Long id) {
-        trainingRepository.deleteById(id);
-        return "redirect:/training/all";
+    public String delete(@PathVariable Long id, Model model) {
+        try {
+            trainingRepository.deleteById(id);
+            return "redirect:/training/all";
+        } catch (Exception e) {
+            model.addAttribute("delete", "failed");
+        }
+        return "forward:/training/all";
     }
 
 
@@ -57,8 +60,11 @@ public class TrainingController {
 
     @GetMapping("/training/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {
-        model.addAttribute("training", trainingRepository.findById(id));
-        return "training/edit";
+        if(trainingRepository.findById(id).isPresent()){
+            model.addAttribute("training", trainingRepository.findById(id));
+            return "training/edit";
+        }
+        return "redirect:/training/all";
     }
 
     @PostMapping("/training/edit/{id}")
@@ -72,9 +78,12 @@ public class TrainingController {
 
     @GetMapping("/training/show/{id}")
     public String show(@PathVariable Long id, Model model) {
-        model.addAttribute("training", trainingRepository.findById(id).get());
-        model.addAttribute("exercises",trainingExerciseRepository.findAllExercisesFromTraining(trainingRepository.findById(id).get()));
-        return "training/show";
+        if(trainingRepository.findById(id).isPresent()){
+            model.addAttribute("training", trainingRepository.findById(id).get());
+            model.addAttribute("exercises", trainingExerciseRepository.findAllExercisesFromTraining(trainingRepository.findById(id).get()));
+            return "training/show";
+        }
+        return "redirect:/training/all";
     }
 
 }

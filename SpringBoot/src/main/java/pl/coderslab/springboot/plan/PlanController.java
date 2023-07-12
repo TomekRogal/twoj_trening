@@ -1,5 +1,6 @@
 package pl.coderslab.springboot.plan;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.springboot.plantraining.PlanTrainingRepository;
+import pl.coderslab.springboot.user.CurrentUser;
 
 
 import javax.validation.Valid;
@@ -28,12 +30,18 @@ public class PlanController {
     }
     @RequestMapping("/plan/delete/{id}")
     public String delete(@PathVariable Long id) {
-        planRepository.deleteById(id);
+        if(planRepository.findById(id).isPresent()){
+            planTrainingRepository.deleteAllFromPlan(planRepository.findById(id).get());
+            planRepository.deleteById(id);
+            return "redirect:/plan/all";
+        }
         return "redirect:/plan/all";
     }
     @GetMapping("/plan/add")
-    public String add(Model model) {
-        model.addAttribute("plan", new Plan());
+    public String add(@AuthenticationPrincipal CurrentUser customUser ,Model model) {
+        Plan plan = new Plan();
+        plan.setUser(customUser.getUser());
+        model.addAttribute("plan", plan);
         return "plan/add";
     }
 
@@ -47,8 +55,11 @@ public class PlanController {
     }
     @GetMapping("/plan/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {
-        model.addAttribute("plan", planRepository.findById(id));
-        return "plan/edit";
+        if(planRepository.findById(id).isPresent()){
+            model.addAttribute("plan", planRepository.findById(id));
+            return "plan/edit";
+        }
+        return "redirect:/plan/all";
     }
 
     @PostMapping("/plan/edit/{id}")
@@ -61,10 +72,11 @@ public class PlanController {
     }
     @GetMapping("/plan/show/{id}")
     public String show(@PathVariable Long id, Model model) {
-        model.addAttribute("plan", planRepository.findById(id).get());
-        model.addAttribute("trainings",planTrainingRepository.findAllTrainingsFromPlan(planRepository.findById(id).get()));
-        return "plan/show";
+        if(planRepository.findById(id).isPresent()){
+            model.addAttribute("plan", planRepository.findById(id).get());
+            model.addAttribute("trainings",planTrainingRepository.findAllTrainingsFromPlan(planRepository.findById(id).get()));
+            return "plan/show";
+        }
+        return "redirect:/plan/all";
     }
-
-
 }

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.springboot.plan.Plan;
 
 import javax.validation.Valid;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 @Controller
 public class ExerciseController {
@@ -24,9 +26,14 @@ public class ExerciseController {
         return "exercise/all";
     }
     @RequestMapping("/exercise/delete/{id}")
-    public String delete(@PathVariable Long id) {
-        exerciseRepository.deleteById(id);
-        return "redirect:/exercise/all";
+    public String delete(@PathVariable Long id, Model model) {
+        try {
+            exerciseRepository.deleteById(id);
+            return "redirect:/exercise/all";
+        } catch (Exception e) {
+            model.addAttribute("delete","failed");
+        }
+        return "forward:/exercise/all";
     }
     @GetMapping("/exercise/add")
     public String add(Model model) {
@@ -44,8 +51,11 @@ public class ExerciseController {
     }
     @GetMapping("/exercise/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {
-        model.addAttribute("exercise", exerciseRepository.findById(id));
-        return "exercise/edit";
+        if(exerciseRepository.findById(id).isPresent()){
+            model.addAttribute("exercise", exerciseRepository.findById(id));
+            return "exercise/edit";
+        }
+        return "redirect:/exercise/all";
     }
 
     @PostMapping("/exercise/edit/{id}")
@@ -58,8 +68,11 @@ public class ExerciseController {
     }
     @GetMapping("/exercise/show/{id}")
     public String show(@PathVariable Long id, Model model) {
-        model.addAttribute("exercise", exerciseRepository.findById(id).get());
-        return "exercise/show";
+        if(exerciseRepository.findById(id).isPresent()){
+            model.addAttribute("exercise", exerciseRepository.findById(id).get());
+            return "exercise/show";
+        }
+        return "redirect:/exercise/all";
     }
 }
 
