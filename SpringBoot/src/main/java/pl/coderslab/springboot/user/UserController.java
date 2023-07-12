@@ -1,8 +1,14 @@
 package pl.coderslab.springboot.user;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pl.coderslab.springboot.training.Training;
+
+import javax.validation.Valid;
 
 @Controller
 public class UserController {
@@ -23,6 +29,19 @@ public class UserController {
     @GetMapping("/login")
     public String login(){
         return "admin/admin-login";
+    }
+    @GetMapping("/register")
+    public String register(Model model) {
+    model.addAttribute("user",new User());
+        return "home/register";
+    }
+    @PostMapping("/register")
+    public String addProcess(@Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "home/register";
+        }
+       userService.saveUser(user);
+        return "redirect:/login";
     }
 
 }
