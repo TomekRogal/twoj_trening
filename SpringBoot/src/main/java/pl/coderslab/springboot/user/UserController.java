@@ -6,7 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pl.coderslab.springboot.training.Training;
+
 
 import javax.validation.Valid;
 
@@ -29,6 +29,10 @@ public class UserController {
     @GetMapping("/login")
     public String login(){
         return "admin/admin-login";
+    }
+    @GetMapping("/logout")
+    public String logout(){
+        return "admin/admin-logout";
     }
     @GetMapping("/register")
     public String register(Model model) {

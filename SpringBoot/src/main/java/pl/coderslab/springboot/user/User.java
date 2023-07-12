@@ -3,6 +3,7 @@ package pl.coderslab.springboot.user;
 import pl.coderslab.springboot.role.Role;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Entity
@@ -10,6 +11,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
     @Column(nullable = false, unique = true, length = 60)
     private String username;
     private String password;
