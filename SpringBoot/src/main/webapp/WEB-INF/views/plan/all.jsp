@@ -9,6 +9,7 @@
             width: 100%;
             border: 2px solid #888;
         }
+
         table td,
         table th {
             border: 1px solid #aaa;

@@ -12,6 +12,7 @@ import pl.coderslab.springboot.training.Training;
 import pl.coderslab.springboot.training.TrainingRepository;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
