@@ -72,19 +72,12 @@
                             <a class="nav-link" href="/training/add">Dodaj nowy</a>
                         </nav>
                     </div>
-
-
-
-
                 </div>
             </div>
         </nav>
     </div>
 
-
     <div id="layoutSidenav_content">
-
-
 
         <main>
             <div class="container text-center">
@@ -105,8 +98,6 @@
                     </div>
                 </div>
             </div>
-
-
 
         </main>
         <footer class="py-4 bg-light mt-auto">
