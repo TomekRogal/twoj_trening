@@ -15,7 +15,7 @@
     <form:hidden path="user"/>
     Nazwa: <form:input path="name" /> <br>
     <form:errors  path="name"/><br>
-    Początek: <form:input type="date" path="startDate" /> <br>
+    Początek: <form:input type="date"  path="startDate" /> <br>
     <form:errors  path="startDate"/><br>
     Koniec: <form:input type="date" path="endDate" /> <br>
     <form:errors  path="endDate"/><br>

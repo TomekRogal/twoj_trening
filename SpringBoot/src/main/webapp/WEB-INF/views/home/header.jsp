@@ -29,7 +29,7 @@
         <a class="nav-link" href="/aboutApp">o aplikacji</a>
       </li>
       <li class="nav-item ml-4">
-        <a class="nav-link disabled" href="/training/all">Treningi</a>
+        <a class="nav-link disabled" href="/plan/all">Plany</a>
       </li>
       <li class="nav-item ml-4">
         <a class="nav-link disabled" href="/contact">Kontakt</a>

@@ -7,11 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.coderslab.springboot.plan.Plan;
 
 import javax.validation.Valid;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
+
 
 @Controller
 public class ExerciseController {

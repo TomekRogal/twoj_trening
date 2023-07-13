@@ -18,13 +18,14 @@
     </style>
 </head>
 <body>
-<h1>Trainings ${training.name}</h1>
+<h1>Trening: ${training.name}</h1>
 <a href="/training/add" >Add Training</a>
 <table>
     <thead>
     <tr>
-        <td>Name</td>
-        <td>Actions</td>
+        <th>Nazwa</th>
+        <th>Opis</th>
+        <th>Actions</th>
 
     </tr>
     </thead>
@@ -32,9 +33,7 @@
 
         <tr>
             <td>${training.name}</td>
-<%--            <td>${training.sets}</td>--%>
-<%--            <td>${training.reps}</td>--%>
-<%--            <td>${training.weight}</td>--%>
+            <td>${training.description}</td>
 
             <td>
                 <a href="/training/all" >All</a>

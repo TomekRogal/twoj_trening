@@ -18,5 +18,10 @@
     <form:errors  path="password"/><br>
     <input type="submit" value="Save">
 </form:form>
+<div>
+    <c:if test='${register.equals("failed")}'>
+        <p  style="color:red" > Użytkownik o podanej nazwie już istnieje</p>
+    </c:if>
+</div>
 </body>
 </html>

@@ -40,8 +40,15 @@ public class UserController {
         return "home/register";
     }
     @PostMapping("/register")
-    public String addProcess(@Valid User user, BindingResult bindingResult) {
+    public String addProcess(@Valid User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            return "home/register";
+        }
+        if(userService.findByUserName(user.getUsername()) != null)
+        {
+            model.addAttribute("register","failed");
+            user.setUsername("");
+            user.setPassword("");
             return "home/register";
         }
        userService.saveUser(user);

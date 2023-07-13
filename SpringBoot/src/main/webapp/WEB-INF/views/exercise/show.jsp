@@ -17,19 +17,20 @@
   </style>
 </head>
 <body>
-<h1>Exercises list:</h1>
-<a href="/exercise/add" >Add Exercise</a>
+<h1>Szczegóły ćwiczenia:</h1>
+<a href="/exercise/add" >Dodaj ćwiczenie</a>
 <table>
   <thead>
   <tr>
-    <td>Name</td>
-    <td>Actions</td>
+    <th>Nazwa</th>
+    <th>Opis</th>
+    <th>Akcje</th>
   </tr>
   </thead>
   <tbody>
     <tr>
       <td>${exercise.name}</td>
-
+      <td>${exercise.description}</td>
       <td>
         <a href="/exercise/edit/${exercise.id}" >Edit</a>
         <a href="/exercise/show/${exercise.id}" >Show</a>

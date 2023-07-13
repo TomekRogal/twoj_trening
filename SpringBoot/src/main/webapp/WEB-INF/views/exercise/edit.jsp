@@ -8,13 +8,15 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Edit Exercise</h1>
+<h1>Edytuj ćwiczenie</h1>
 <form:form method="post"
            modelAttribute="exercise">
     <form:hidden path="id"/>
     Name: <form:input path="name" /> <br>
     <form:errors  path="name"/><br>
-    <input type="submit" value="Save">
+    Opis: <form:textarea rows="5" path="description"/>
+    <form:errors path="description"/><br>
+    <input type="submit" value="Dodaj">
 </form:form>
 </body>
 </html>

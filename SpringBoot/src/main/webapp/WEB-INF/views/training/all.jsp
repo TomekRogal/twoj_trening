@@ -23,8 +23,9 @@
 <table>
     <thead>
     <tr>
-        <td>Name</td>
-        <td>Actions</td>
+        <th>Nazwa</th>
+        <th>Opis</th>
+        <th>Actions</th>
 
     </tr>
     </thead>
@@ -32,6 +33,7 @@
     <c:forEach items="${trainings}" var="training">
         <tr>
             <td>${training.name}</td>
+            <td>${training.description}</td>
             <td>
                 <a href="/training/edit/${training.id}" >Edit</a>
                 <a href="/training/show/${training.id}" >Show</a>

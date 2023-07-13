@@ -1,19 +1,36 @@
 package pl.coderslab.springboot.plan;
-
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.springboot.user.User;
-
 import javax.persistence.*;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
+
+
 
 @Entity
 public class Plan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Pole nie może być puste")
     private String name;
-    private String startDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @FutureOrPresent
+    private LocalDate startDate;
     private String endDate;
     @ManyToOne
     private User user;
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+
 
     public Long getId() {
         return id;
@@ -29,14 +46,6 @@ public class Plan {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
     }
 
     public String getEndDate() {
