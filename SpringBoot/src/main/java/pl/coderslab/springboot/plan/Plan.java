@@ -3,6 +3,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.springboot.user.User;
 import javax.persistence.*;
 import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
@@ -19,9 +20,21 @@ public class Plan {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @FutureOrPresent
     private LocalDate startDate;
-    private String endDate;
+    @Min(value = 1, message = "Długość planu musi być liczbą całkowitą większą od 0")
+   private int weeks;
     @ManyToOne
     private User user;
+
+    public int getWeeks() {
+        return weeks;
+    }
+
+
+    public void setWeeks(int weeks) {
+        this.weeks = weeks;
+    }
+
+
     public LocalDate getStartDate() {
         return startDate;
     }
@@ -47,15 +60,6 @@ public class Plan {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
     public User getUser() {
         return user;
     }

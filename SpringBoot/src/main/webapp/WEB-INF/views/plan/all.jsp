@@ -25,7 +25,7 @@
     <tr>
         <td>Nazwa</td>
         <td>Początek</td>
-        <td>Koniec</td>
+        <td>Długość tygodnie</td>
         <td>Actions</td>
 
     </tr>
@@ -35,7 +35,7 @@
         <tr>
             <td>${plan.name}</td>
             <td>${plan.startDate}</td>
-            <td>${plan.endDate}</td>
+            <td>${plan.weeks}</td>
 
             <td>
                 <a href="/plan/edit/${plan.id}" >Edit</a>

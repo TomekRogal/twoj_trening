@@ -5,6 +5,8 @@ import pl.coderslab.springboot.plan.Plan;
 import pl.coderslab.springboot.training.Training;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+
 
 @Entity
 public class PlanTraining {
@@ -17,14 +19,15 @@ public class PlanTraining {
     private Training training;
     @ManyToOne
     private DayName dayName;
-    private int displayOrder;
+    @Min(value = 1, message = "Wartość musi być liczbą całkowitą większą od 0")
+    private int week;
 
-    public int getDisplayOrder() {
-        return displayOrder;
+    public int getWeek() {
+        return week;
     }
 
-    public void setDisplayOrder(int displayOrder) {
-        this.displayOrder = displayOrder;
+    public void setWeek(int week) {
+        this.week = week;
     }
 
     public DayName getDayName() {

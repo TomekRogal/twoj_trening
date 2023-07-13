@@ -17,8 +17,8 @@
   <form:errors  path="name"/><br>
   Początek: <form:input type="date" path="startDate" /> <br>
   <form:errors  path="startDate"/><br>
-  Koniec: <form:input type="date" path="endDate" /> <br>
-  <form:errors  path="endDate"/><br>
+  Długość - tygodnie: <form:input type="number" path="weeks" /> <br>
+  <form:errors  path="weeks"/><br>
   <input type="submit" value="Save">
 </form:form>
 </body>

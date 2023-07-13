@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public interface PlanTrainingRepository extends JpaRepository<PlanTraining, Long> {
-    @Query("SELECT DISTINCT pt FROM PlanTraining pt JOIN FETCH pt.training JOIN FETCH pt.dayName WHERE pt.plan = ?1 ORDER BY pt.dayName.displayOrder")
+    @Query("SELECT DISTINCT pt FROM PlanTraining pt JOIN FETCH pt.training JOIN FETCH pt.dayName WHERE pt.plan = ?1 ORDER BY pt.week, pt.dayName.displayOrder")
     List<PlanTraining> findAllTrainingsFromPlan(Plan plan);
     @Modifying
     @Transactional

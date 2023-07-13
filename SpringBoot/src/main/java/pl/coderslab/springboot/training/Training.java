@@ -1,6 +1,7 @@
 package pl.coderslab.springboot.training;
 
 import pl.coderslab.springboot.exercise.Exercise;
+import pl.coderslab.springboot.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -18,6 +19,16 @@ public class Training {
 
     public String getDescription() {
         return description;
+    }
+    @ManyToOne
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public void setDescription(String description) {
