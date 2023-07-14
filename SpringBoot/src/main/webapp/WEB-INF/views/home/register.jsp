@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Register - SB Admin</title>
+    <title>Register - Twój trening</title>
     <link href="css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -101,40 +101,3 @@
 </body>
 </html>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<%--<html>--%>
-<%--<head>--%>
-<%--    <title>Title</title>--%>
-<%--</head>--%>
-<%--<body>--%>
-<%--<h1>Nowy użytkownik</h1>--%>
-<%--<form:form method="post"--%>
-<%--           modelAttribute="user">--%>
-<%--    <form:hidden path="id"/>--%>
-<%--    Nazwa użytkownika: <form:input path="username" /> <br>--%>
-<%--    <form:errors  path="username"/><br>--%>
-<%--    Hasło: <form:input type="password" path="password" /> <br>--%>
-<%--    <form:errors  path="password"/><br>--%>
-<%--    <input type="submit" value="Save">--%>
-<%--</form:form>--%>
-<%--<div>--%>
-<%--    <c:if test='${register.equals("failed")}'>--%>
-<%--        <p  style="color:red" > Użytkownik o podanej nazwie już istnieje</p>--%>
-<%--    </c:if>--%>
-<%--</div>--%>
-<%--</body>--%>
-<%--</html>--%>
