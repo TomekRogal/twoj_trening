@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -40,7 +41,7 @@ public class UserController {
         return "home/register";
     }
     @PostMapping("/register")
-    public String addProcess(@Valid User user, BindingResult bindingResult, Model model) {
+    public String addProcess(@RequestParam String confirm, @Valid User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "home/register";
         }
@@ -49,6 +50,10 @@ public class UserController {
             model.addAttribute("register","failed");
             user.setUsername("");
             user.setPassword("");
+            return "home/register";
+        }
+        if(!user.getPassword().equals(confirm)){
+            model.addAttribute("pass","failed");
             return "home/register";
         }
        userService.saveUser(user);

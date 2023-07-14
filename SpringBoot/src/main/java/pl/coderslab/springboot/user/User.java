@@ -11,9 +11,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
+    @NotBlank(message = "Nazwa użytkownika nie może być pusta")
     @Column(nullable = false, unique = true, length = 60)
     private String username;
+    @NotBlank(message = "Hasło nie może być puste")
     private String password;
     private int enabled;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
