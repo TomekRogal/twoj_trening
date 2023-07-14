@@ -13,7 +13,9 @@
 
             <div class="card mb-4">
                 <div class="ms-auto px-2 mt-5">
+<sec:authorize access="hasRole('ADMIN')">
                 <a href="/exercise/add" ><button href="/exercise/add" type="button" class="btn btn-primary ">Dodaj ćwiczenie</button></a>
+</sec:authorize>
                 </div>
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
@@ -34,9 +36,13 @@
             <td>${exercise.name}</td>
             <td>${exercise.description}</td>
             <td>
+                <sec:authorize access="hasRole('ADMIN')">
                 <a href="/exercise/edit/${exercise.id}" ><button type="button" class="btn btn-warning">Edytuj</button></a>
+                </sec:authorize>
                 <a href="/exercise/show/${exercise.id}" ><button type="button" class="btn btn-success">Szczegóły</button></a>
+                <sec:authorize access="hasRole('ADMIN')">
                 <a href="/exercise/delete/${exercise.id}" class="delete-link"><button type="button" class="btn btn-danger">Usuń</button></a>
+                </sec:authorize>
                 <a href="/training/exercise/add" ><button type="button" class="btn btn-primary">Dodaj do treningu</button></a>
             </td>
         </tr>
@@ -48,6 +54,7 @@
                     <p  style="color:red" > Nie można usunąć ćwiczenia</p>
                 </c:if>
             </div>
+            <jsp:include page="/wid/footer.jsp"/>
         </div>
     </div>
 <jsp:include page="/wid/scripts.jsp"/>
