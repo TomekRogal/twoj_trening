@@ -43,7 +43,9 @@
                 <sec:authorize access="hasRole('ADMIN')">
                 <a href="/exercise/delete/${exercise.id}" class="delete-link"><button type="button" class="btn btn-danger">Usuń</button></a>
                 </sec:authorize>
+                <sec:authorize access="isAuthenticated()">
                 <a href="/training/exercise/add" ><button type="button" class="btn btn-primary">Dodaj do treningu</button></a>
+                </sec:authorize>
             </td>
         </tr>
     </c:forEach>
