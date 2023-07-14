@@ -3,7 +3,7 @@ window.addEventListener("DOMContentLoaded", function() {
     deleteLinks.forEach(function(link) {
         link.addEventListener("click", function(e) {
             e.preventDefault();
-            let confirmed = confirm("Czy na pewno chcesz usunąć tego autora?");
+            let confirmed = confirm("Czy na pewno chcesz usunąć?");
 
             if (confirmed) {
                 window.location.href = this.href;

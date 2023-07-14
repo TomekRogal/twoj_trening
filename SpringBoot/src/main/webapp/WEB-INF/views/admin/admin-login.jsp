@@ -35,7 +35,11 @@
                                         <label for="inputPassword">Hasło</label>
                                     </div>
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
+                                    <c:if test="${param.error != null}">
+                                        <div id="error">
+                                            <p  style="color:red" > Nieprawidłowa nazwa użytkownika lub hasło</p>
+                                        </div>
+                                    </c:if>
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                         <input class="btn btn-primary" type="submit" value="Zaloguj"/></div>
 
