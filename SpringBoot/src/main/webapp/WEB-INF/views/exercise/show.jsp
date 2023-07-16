@@ -1,44 +1,34 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form"
+           uri="http://www.springframework.org/tags/form" %>
 <script type="text/javascript"  src='<c:url value="/scripts/delete.js"/>'></script>
 <html>
-<head>
-  <title>Title</title>
-  <style>
-    table {
-      width: 100%;
-      border: 2px solid #888;
-    }
-    table td,
-    table th {
-      border: 1px solid #aaa;
-      padding: 5px;
-    }
-  </style>
-</head>
-<body>
-<h1>Szczegóły ćwiczenia:</h1>
-<a href="/exercise/add" >Dodaj ćwiczenie</a>
-<table>
-  <thead>
-  <tr>
-    <th>Nazwa</th>
-    <th>Opis</th>
-    <th>Akcje</th>
-  </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>${exercise.name}</td>
-      <td>${exercise.description}</td>
-      <td>
-        <a href="/exercise/edit/${exercise.id}" >Edit</a>
-        <a href="/exercise/show/${exercise.id}" >Show</a>
-        <a href="/exercise/delete/${exercise.id}" class="delete-link">delete</a>
-      </td>
-    </tr>
+<jsp:include page="/wid/head.jsp"/>
+<body class="sb-nav-fixed">
+<jsp:include page="/wid/menuup.jsp"/>
+<div id="layoutSidenav">
+  <jsp:include page="/wid/menuleft.jsp"/>
+  <div id="layoutSidenav_content">
+    <div class="card mb-4 ">
+      <div class="ms-auto px-2 mt-5" >
 
-  </tbody>
-</table>
+          <a href="/exercise/all" ><button type="button" class="btn btn-primary ">Lista ćwiczeń</button></a>
+      </div>
+      <div class="card-header">
+        <h1>Ćwiczenie: </h1> <h2 class="text-center mt-5"> ${exercise.name}</h2>
+      </div>
+    </div>
+      <div class="card mb-4">
+          <div class="card-header">
+              <p class="text-center">Opis:</p>
+          </div>
+          <div class="card-body text-center">${exercise.description}</div>
+      </div>
+    <jsp:include page="/wid/footer.jsp"/>
+  </div>
+</div>
+<jsp:include page="/wid/scripts.jsp"/>
 </body>
 </html>

@@ -12,9 +12,9 @@
 
 
             <div class="card mb-4">
-                <div class="ms-auto px-2 mt-5">
+                <div class="ms-auto px-2 mt-5" >
 <sec:authorize access="hasRole('ADMIN')">
-                <a href="/exercise/add" ><button href="/exercise/add" type="button" class="btn btn-primary ">Dodaj ćwiczenie</button></a>
+                <a href="/exercise/add" ><button type="button" class="btn btn-primary ">Dodaj ćwiczenie</button></a>
 </sec:authorize>
                 </div>
                 <div class="card-header">

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div id="layoutSidenav_nav">
   <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
     <div class="sb-sidenav-menu">
@@ -14,7 +15,7 @@
           <div class="sb-nav-link-icon"><i class="fas fa-running"></i></div>
           ĆWICZENIA
         </a>
-
+<sec:authorize access="isAuthenticated()">
         <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
           <div class="sb-nav-link-icon"><i class="fas fa-scroll"></i></div>
           PLANY
@@ -37,6 +38,7 @@
             <a class="nav-link" href="/training/add">Dodaj nowy</a>
           </nav>
         </div>
+</sec:authorize>
       </div>
     </div>
   </nav>
