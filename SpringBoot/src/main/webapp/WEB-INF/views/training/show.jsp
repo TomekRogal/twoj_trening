@@ -1,76 +1,77 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form"
+           uri="http://www.springframework.org/tags/form" %>
 <script type="text/javascript"  src='<c:url value="/scripts/delete.js"/>'></script>
-
 <html>
-<head>
-    <title>Title</title>
-    <style>
-        table {
-            width: 100%;
-            border: 2px solid #888;
-        }
-        table td,
-        table th {
-            border: 1px solid #aaa;
-            padding: 5px;
-        }
-    </style>
-</head>
-<body>
-<h1>Trening: ${training.name}</h1>
-<a href="/training/add" >Add Training</a>
-<table>
-    <thead>
-    <tr>
-        <th>Nazwa</th>
-        <th>Opis</th>
-        <th>Actions</th>
+<jsp:include page="/wid/head.jsp"/>
+<body class="sb-nav-fixed">
+<jsp:include page="/wid/menuup.jsp"/>
+<div id="layoutSidenav">
+    <jsp:include page="/wid/menuleft.jsp"/>
+    <div id="layoutSidenav_content">
+        <div class="card mb-4 ">
+            <div class="ms-auto px-2 mt-5" >
+                <a href="/training/all" ><button type="button" class="btn btn-primary ">Lista treningów</button></a>
+            </div>
+<%--            <div class="card-header">--%>
+<%--               --%>
+<%--            </div>--%>
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th class="w-25"><h3>Nazwa treningu:</h3></th>
+                    <td style="font-size: 1.5rem">${training.name}</td>
+                </tr>
+                <tr>
+                    <th style="width: 150px"><h5>Opis:</h5></th>
+                    <td>${training.description}</td>
+                </tr>
+                </tbody>
+            </table>
+<%--            <h1>Trening: </h1> <h2 class="text-center mt-2"> ${training.name}</h2>--%>
+<%--            <h4>Opis:</h4>--%>
+<%--            <div class="card-body text-center">${training.description}</div>--%>
 
-    </tr>
-    </thead>
-    <tbody>
+                <div class="card">
+                <div class="ms-auto px-2 mt-5" >
+                    <a href="/training/exercise/add/${training.id}" ><button type="button" class="btn btn-primary ">Dodaj ćwiczenie</button></a>
+                </div>
+                <h2>Ćwiczenia:</h2>
+                </div>
+                <table id="tabletraining" class="table mt-3">
+                    <thead>
+                    <tr>
+                                <th>Nazwa</th>
+                                <th>Serie</th>
+                                <th>Powtórzenia</th>
+                                <th>Ciężar</th>
+                                <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${exercises}" var="exercise">
+                        <tr>
+                                            <td>${exercise.exercise.name}</td>
+                                            <td>${exercise.sets}</td>
+                                            <td>${exercise.reps}</td>
+                                            <td>${exercise.weight}</td>
+                            <td>
+                                <a href="/training/edit/${training.id}" ><button type="button" class="btn btn-warning">Edytuj</button></a>
+                                <a href="/exercise/show/${exercise.exercise.id}" ><button type="button" class="btn btn-success">Szczegóły ćwiczenia</button></a>
+                                <a href="/training/exercise/delete/${exercise.id}" class="delete-link"><button type="button" class="btn btn-danger">Usuń</button></a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
 
-        <tr>
-            <td>${training.name}</td>
-            <td>${training.description}</td>
-
-            <td>
-                <a href="/training/all" >All</a>
-                <a href="/training/edit/${training.id}" >Edit</a>
-                <a href="/training/delete/${training.id}" class="delete-link">delete</a>
-                <a href="/training/exercise/add/${training.id}" >Dodaj ćwiczenie</a>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<br>
-<h1>ĆWICZENIA:</h1>
-<br>
-<table>
-    <thead>
-    <tr>
-        <td>Nazwa</td>
-        <td>Serie</td>
-        <td>Powtórzenia</td>
-        <td>Ciężar</td>
-        <td>Actions</td>
-    </tr>
-    </thead>
-    <c:forEach items="${exercises}" var="exercise">
-        <tr>
-            <td>${exercise.exercise.name}</td>
-            <td>${exercise.sets}</td>
-            <td>${exercise.reps}</td>
-            <td>${exercise.weight}</td>
-            <td>
-                <a href="/exercise/edit/${exercise.exercise.id}" >Edit</a>
-                <a href="/exercise/show/${exercise.exercise.id}" >Show</a>
-                <a href="/training/exercise/delete/${exercise.id}" class="delete-link">delete</a>
-            </td>
-        </tr>
-    </c:forEach>
-
-</table>
+        </div>
+        <jsp:include page="/wid/footer.jsp"/>
+    </div>
+</div>
+<jsp:include page="/wid/scripts.jsp"/>
 </body>
 </html>
+

@@ -22,7 +22,7 @@
     </div>
       <div class="card mb-4">
           <div class="card-header">
-              <p class="text-center">Opis:</p>
+              <p class="text-center"><h3>Opis:</h3></p>
           </div>
           <div class="card-body text-center">${exercise.description}</div>
       </div>

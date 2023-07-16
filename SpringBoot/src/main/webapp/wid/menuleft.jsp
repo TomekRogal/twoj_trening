@@ -23,8 +23,8 @@
         </a>
         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
           <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="/plan/all">Twoje Plany</a>
-            <a class="nav-link" href="/plan/add">Dodaj nowy</a>
+            <a class="nav-link" href="/plan/all">Twoje plany</a>
+            <a class="nav-link" href="/plan/add">Nowy plan</a>
           </nav>
         </div>
         <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -34,8 +34,8 @@
         </a>
         <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
           <nav class="sb-sidenav-menu-nested nav">
-            <a class="nav-link" href="/training/all">Twoje Treningi</a>
-            <a class="nav-link" href="/training/add">Dodaj nowy</a>
+            <a class="nav-link" href="/training/all">Twoje treningi</a>
+            <a class="nav-link" href="/training/add">Nowy trening</a>
           </nav>
         </div>
 </sec:authorize>

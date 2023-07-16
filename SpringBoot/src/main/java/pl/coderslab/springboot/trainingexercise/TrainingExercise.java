@@ -20,6 +20,7 @@ public class TrainingExercise {
     @Min(value = 1, message = "Wartość musi być liczbą całkowitą większą od 0")
     private int reps ;
     @Min(value = 1, message = "Wartość musi być liczbą większą od 0")
+    @Column(scale = 2)
     private Double weight;
 
     public Long getId() {
