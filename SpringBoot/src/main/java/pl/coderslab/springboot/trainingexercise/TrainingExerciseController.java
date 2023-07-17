@@ -6,6 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.springboot.exercise.Exercise;
 import pl.coderslab.springboot.exercise.ExerciseRepository;
+import pl.coderslab.springboot.training.Training;
 import pl.coderslab.springboot.training.TrainingRepository;
 
 
@@ -54,5 +55,22 @@ public class TrainingExerciseController {
             return "redirect:/training/show/"+trainingExercise.getTraining().getId();
         }
         return "redirect:/training/all";
+    }
+    @GetMapping("/training/exercise/edit/{id}")
+    public String edit(@PathVariable Long id, Model model) {
+        if(trainingExerciseRepository.findById(id).isPresent()){
+            model.addAttribute("trainingExercise", trainingExerciseRepository.findById(id).get());
+            return "trainingexercise/edit";
+        }
+        return "redirect:/training/all";
+    }
+
+    @PostMapping("/training/exercise/edit")
+    public String editProcess(@Valid TrainingExercise trainingExercise, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "trainingexercise/edit";
+        }
+        trainingExerciseRepository.save(trainingExercise);
+        return "redirect:/training/show/" + trainingExercise.getTraining().getId();
     }
 }

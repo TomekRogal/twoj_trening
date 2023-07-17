@@ -12,25 +12,28 @@
   <jsp:include page="/wid/menuleft.jsp"/>
   <div id="layoutSidenav_content">
     <div class="ms-auto px-2 mt-5" >
-      <a href="/training/show/${trainingExercise.training.id}" ><button type="button" class="btn btn-primary ">Powrót</button></a>
+      <a href="/plan/show/${planTraining.plan.id}" ><button type="button" class="btn btn-primary ">Powrót</button></a>
     </div>
-    <h1 class="mt-5 d-flex justify-content-center">Dodaj ćwiczenie do treningu: ${trainingExercise.training.name} </h1>
+    <h1 class="mt-5 d-flex justify-content-center">Edytuj trening, plan: ${planTraining.plan.name} </h1>
     <div class="container mt-5">
       <div class="row justify-content-center">
         <div class="col-lg-5">
           <div class="card shadow-lg border-0 rounded-lg mt-5">
             <form:form method="post"
-                       modelAttribute="trainingExercise" action="/training/exercise/add">
+                       modelAttribute="planTraining" action="/plan/training/add">
               <form:hidden path="id"/>
-              <form:hidden path="training"/>
-              Ćwiczenie: <form:select cssClass="form-control" itemLabel="name" itemValue="id" path="exercise" items="${exercises}"/>
+              <form:hidden path="plan"/>
+              Trening: <form:select cssClass="form-control" itemLabel="name" itemValue="id" path="training" items="${trainings}"/><br>
               <form:errors cssStyle="color: red"  path="training"/><br>
-              Serie: <form:input cssClass="form-control" type="number" path="sets"/>
-              <form:errors cssStyle="color: red" path="sets"/><br>
-              Powtórzenia: <form:input cssClass="form-control" type="number" path="reps"/>
-              <form:errors cssStyle="color: red" path="reps"/><br>
-              Ciężar: <form:input cssClass="form-control" type="number" step="0.01" path="weight"/>
-              <form:errors cssStyle="color: red" path="weight"/><br>
+              Dzień tygodnia: <form:select cssClass="form-control" itemLabel="name" itemValue="id" path="dayName" items="${days}"/><br>
+              <form:errors cssStyle="color: red" path="dayName"/><br>
+              Tydzień:
+              <form:select cssClass="form-control" path="week">
+                <c:forEach begin="1" end="${planTraining.plan.weeks}" var="num">
+                  <form:option type="number" value="${num}" /> <br>
+                </c:forEach>
+              </form:select>
+              <form:errors cssStyle="color: red" path="week"/><br>
               <input class="btn btn-primary" type="submit" value="Dodaj">
             </form:form>
           </div>

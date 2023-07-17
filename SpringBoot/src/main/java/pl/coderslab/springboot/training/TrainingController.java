@@ -1,5 +1,6 @@
 package pl.coderslab.springboot.training;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.springboot.trainingexercise.TrainingExerciseRepository;
+import pl.coderslab.springboot.user.CurrentUser;
 
 
 import javax.validation.Valid;
@@ -44,8 +46,10 @@ public class TrainingController {
 
 
     @GetMapping("/training/add")
-    public String add(Model model) {
-        model.addAttribute("training", new Training());
+    public String add(@AuthenticationPrincipal CurrentUser customUser, Model model) {
+        Training training = new Training();
+        training.setUser(customUser.getUser());
+        model.addAttribute("training", training);
         return "training/add";
     }
 
@@ -61,7 +65,7 @@ public class TrainingController {
     @GetMapping("/training/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {
         if(trainingRepository.findById(id).isPresent()){
-            model.addAttribute("training", trainingRepository.findById(id));
+            model.addAttribute("training", trainingRepository.findById(id).get());
             return "training/edit";
         }
         return "redirect:/training/all";

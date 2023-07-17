@@ -10,6 +10,7 @@ import pl.coderslab.springboot.plan.Plan;
 import pl.coderslab.springboot.plan.PlanRepository;
 import pl.coderslab.springboot.training.Training;
 import pl.coderslab.springboot.training.TrainingRepository;
+import pl.coderslab.springboot.trainingexercise.TrainingExercise;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -57,7 +58,7 @@ public class PlanTrainingController {
             return "plantraining/add";
         }
         planTrainingRepository.save(planTraining);
-        return "redirect:/plan/all";
+        return "redirect:/plan/show/" + planTraining.getPlan().getId();
     }
     @RequestMapping("/plan/training/delete/{id}")
     public String delete(@PathVariable Long id) {
@@ -67,5 +68,22 @@ public class PlanTrainingController {
             return "redirect:/plan/show/"+planTraining.getPlan().getId();
         }
         return "redirect:/plan/all";
+    }
+    @GetMapping("/plan/training/edit/{id}")
+    public String edit(@PathVariable Long id, Model model) {
+        if(planTrainingRepository.findById(id).isPresent()){
+            model.addAttribute("planTraining", planTrainingRepository.findById(id).get());
+            return "plantraining/edit";
+        }
+        return "redirect:/plan/all";
+    }
+
+    @PostMapping("/plan/training/edit")
+    public String editProcess(@Valid PlanTraining planTraining, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "plantraining/edit";
+        }
+        planTrainingRepository.save(planTraining);
+        return "redirect:/plan/show/" + planTraining.getPlan().getId();
     }
 }

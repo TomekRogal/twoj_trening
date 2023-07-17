@@ -12,20 +12,26 @@
     <jsp:include page="/wid/menuleft.jsp"/>
     <div id="layoutSidenav_content">
         <div class="ms-auto px-2 mt-5" >
-            <a href="/exercise/all" ><button type="button" class="btn btn-primary ">Lista ćwiczeń</button></a>
+            <a href="/training/show/${trainingExercise.training.id}" ><button type="button" class="btn btn-primary ">Powrót</button></a>
+
         </div>
-        <h1 class="mt-5 d-flex justify-content-center">Edytuj ćwiczenie:</h1>
+        <h1 class="mt-5 d-flex justify-content-center">Edytuj ćwiczenie, trening: ${trainingExercise.training.name}  </h1>
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-lg-5">
                     <div class="card shadow-lg border-0 rounded-lg mt-5">
                         <form:form method="post"
-                                   modelAttribute="exercise">
+                                   modelAttribute="trainingExercise" action="/training/exercise/edit">
                             <form:hidden path="id"/>
-                            Nazwa: <form:input cssClass="form-control" path="name" placeholder="Nazwa ćwiczenia"/>
-                            <form:errors cssStyle="color: red" path="name"/><br>
-                            Opis: <form:textarea cssClass="form-control" rows="5" path="description" placeholder="Krótki opis"/>
-                            <form:errors cssStyle="color: red" path="description"/><br>
+                            <form:hidden path="training"/>
+                            Ćwiczenie: <form:select cssClass="form-control" itemLabel="name" itemValue="id" path="exercise" items="${exercises}"/>
+                            <form:errors cssStyle="color: red"  path="exercise"/><br>
+                            Serie: <form:input cssClass="form-control" type="number" path="sets"/>
+                            <form:errors cssStyle="color: red" path="sets"/><br>
+                            Powtórzenia: <form:input cssClass="form-control" type="number" path="reps"/>
+                            <form:errors cssStyle="color: red" path="reps"/><br>
+                            Ciężar: <form:input cssClass="form-control" type="number" step="0.01" path="weight"/>
+                            <form:errors cssStyle="color: red" path="weight"/><br>
                             <input class="btn btn-primary" type="submit" value="Edytuj">
                         </form:form>
                     </div>

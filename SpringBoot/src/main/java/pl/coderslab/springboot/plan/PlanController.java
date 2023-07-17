@@ -62,7 +62,7 @@ public class PlanController {
     @GetMapping("/plan/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {
         if(planRepository.findById(id).isPresent()){
-            model.addAttribute("plan", planRepository.findById(id));
+            model.addAttribute("plan", planRepository.findById(id).get());
             return "plan/edit";
         }
         return "redirect:/plan/all";

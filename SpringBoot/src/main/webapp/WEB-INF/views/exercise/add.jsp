@@ -22,10 +22,10 @@
                       <form:form method="post"
                            modelAttribute="exercise">
                           <form:hidden path="id"/>
-                          Nazwa: <form:input cssClass="form-control" path="name" placeholder="Nazwa ćwiczenia"/> <br>
-                          <form:errors path="name"/><br>
+                          Nazwa: <form:input cssClass="form-control" path="name" placeholder="Nazwa ćwiczenia"/>
+                          <form:errors cssStyle="color: red" path="name"/><br>
                           Opis: <form:textarea cssClass="form-control" rows="5" path="description" placeholder="Krótki opis"/>
-                          <form:errors path="description"/><br>
+                          <form:errors cssStyle="color: red" path="description"/><br>
                           <input class="btn btn-primary" type="submit" value="Dodaj">
                       </form:form>
                     </div>

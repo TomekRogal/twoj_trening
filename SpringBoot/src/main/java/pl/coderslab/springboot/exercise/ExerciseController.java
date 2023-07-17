@@ -50,7 +50,7 @@ public class ExerciseController {
     @GetMapping("/exercise/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {
         if(exerciseRepository.findById(id).isPresent()){
-            model.addAttribute("exercise", exerciseRepository.findById(id));
+            model.addAttribute("exercise", exerciseRepository.findById(id).get());
             return "exercise/edit";
         }
         return "redirect:/exercise/all";

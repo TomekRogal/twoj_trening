@@ -15,9 +15,6 @@
             <div class="ms-auto px-2 mt-5" >
                 <a href="/training/all" ><button type="button" class="btn btn-primary ">Lista treningów</button></a>
             </div>
-<%--            <div class="card-header">--%>
-<%--               --%>
-<%--            </div>--%>
             <table class="table">
                 <tbody>
                 <tr>
@@ -30,10 +27,6 @@
                 </tr>
                 </tbody>
             </table>
-<%--            <h1>Trening: </h1> <h2 class="text-center mt-2"> ${training.name}</h2>--%>
-<%--            <h4>Opis:</h4>--%>
-<%--            <div class="card-body text-center">${training.description}</div>--%>
-
                 <div class="card">
                 <div class="ms-auto px-2 mt-5" >
                     <a href="/training/exercise/add/${training.id}" ><button type="button" class="btn btn-primary ">Dodaj ćwiczenie</button></a>
@@ -58,7 +51,7 @@
                                             <td>${exercise.reps}</td>
                                             <td>${exercise.weight}</td>
                             <td>
-                                <a href="/training/edit/${training.id}" ><button type="button" class="btn btn-warning">Edytuj</button></a>
+                                <a href="/training/exercise/edit/${exercise.id}" ><button type="button" class="btn btn-warning">Edytuj</button></a>
                                 <a href="/exercise/show/${exercise.exercise.id}" ><button type="button" class="btn btn-success">Szczegóły ćwiczenia</button></a>
                                 <a href="/training/exercise/delete/${exercise.id}" class="delete-link"><button type="button" class="btn btn-danger">Usuń</button></a>
                             </td>
