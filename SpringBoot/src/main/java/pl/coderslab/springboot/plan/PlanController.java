@@ -30,16 +30,18 @@ public class PlanController {
         this.trainingExerciseRepository = trainingExerciseRepository;
     }
     @RequestMapping("/plan/all")
-    public String findAll(Model model) {
-        model.addAttribute("plans", planRepository.findAll());
+    public String findAll(@AuthenticationPrincipal CurrentUser customUser, Model model) {
+        model.addAttribute("plans", planRepository.findByUser(customUser.getUser()));
         return "plan/all";
     }
     @RequestMapping("/plan/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id, @AuthenticationPrincipal CurrentUser customUser) {
         if(planRepository.findById(id).isPresent()){
-            planTrainingRepository.deleteAllFromPlan(planRepository.findById(id).get());
-            planRepository.deleteById(id);
-            return "redirect:/plan/all";
+            if(planRepository.findById(id).get().getUser().getId().equals(customUser.getUser().getId())){
+                planTrainingRepository.deleteAllFromPlan(planRepository.findById(id).get());
+                planRepository.deleteById(id);
+                return "redirect:/plan/all";
+            }
         }
         return "redirect:/plan/all";
     }
@@ -60,10 +62,12 @@ public class PlanController {
         return "redirect:/plan/all";
     }
     @GetMapping("/plan/edit/{id}")
-    public String edit(@PathVariable Long id, Model model) {
+    public String edit(@PathVariable Long id, Model model, @AuthenticationPrincipal CurrentUser customUser) {
         if(planRepository.findById(id).isPresent()){
-            model.addAttribute("plan", planRepository.findById(id).get());
-            return "plan/edit";
+            if(planRepository.findById(id).get().getUser().getId().equals(customUser.getUser().getId())) {
+                model.addAttribute("plan", planRepository.findById(id).get());
+                return "plan/edit";
+            }
         }
         return "redirect:/plan/all";
     }
@@ -77,14 +81,16 @@ public class PlanController {
         return "redirect:/plan/all";
     }
     @GetMapping("/plan/show/{id}")
-    public String show(@PathVariable Long id, Model model) {
+    public String show(@PathVariable Long id, Model model, @AuthenticationPrincipal CurrentUser customUser) {
         if(planRepository.findById(id).isPresent()){
-            model.addAttribute("plan", planRepository.findById(id).get());
-            Map<PlanTraining,List<TrainingExercise>> te = new LinkedHashMap<>();
-            List<PlanTraining> allTrainingsFromPlan = planTrainingRepository.findAllTrainingsFromPlan(planRepository.findById(id).get());
-            allTrainingsFromPlan.forEach(e->te.put(e,trainingExerciseRepository.findAllExercisesFromTraining(e.getTraining())));
-            model.addAttribute("trainingsList",te);
-            return "plan/show";
+            if(planRepository.findById(id).get().getUser().getId().equals(customUser.getUser().getId())) {
+                model.addAttribute("plan", planRepository.findById(id).get());
+                Map<PlanTraining, List<TrainingExercise>> te = new LinkedHashMap<>();
+                List<PlanTraining> allTrainingsFromPlan = planTrainingRepository.findAllTrainingsFromPlan(planRepository.findById(id).get());
+                allTrainingsFromPlan.forEach(e -> te.put(e, trainingExerciseRepository.findAllExercisesFromTraining(e.getTraining())));
+                model.addAttribute("trainingsList", te);
+                return "plan/show";
+            }
         }
         return "redirect:/plan/all";
     }

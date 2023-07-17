@@ -45,11 +45,11 @@
       <table id="tabletraining" class="table mt-3">
                <thead>
                <tr>
-                 <th class="table-dark text-center"><p class="mb-3">Dzień : ${traininginfo.getKey().dayName.name}</p></th>
-                   <th class="table-dark text-center"><p class="mb-3">Trening: ${traininginfo.getKey().training.name}</p> </th>
-                 <th class="table-dark text-center" colspan="3">Actions :
-                   <a href="/plan/training/edit/${traininginfo.getKey().id}" ><button type="button" class="btn btn-warning">Edytuj trening</button></a>
-                   <a href="/training/show/${traininginfo.getKey().training.id}" ><button type="button" class="btn btn-success">Szczegóły treningu</button></a>
+                 <th class="table-dark text-center w-25"><p class="mb-3">Dzień : ${traininginfo.getKey().dayName.name}</p></th>
+                   <th class="table-dark text-center w-25"><p class="mb-3">Trening: ${traininginfo.getKey().training.name}</p> </th>
+                 <th class="table-dark text-center w-50" colspan="3">Actions :
+                   <a href="/plan/training/edit/${traininginfo.getKey().id}" ><button type="button" class="btn btn-info">Edytuj trening</button></a>
+                   <a href="/training/show/${traininginfo.getKey().training.id}" ><button type="button" class="btn btn-warning">Edytuj ćwiczenia</button></a>
                    <a href="/plan/training/delete/${traininginfo.getKey().id}" class="delete-link"><button type="button" class="btn btn-danger">Usuń z planu</button></a>
                  </th>
 <%--                 <th class="table-dark"><a href="/training/exercise/add/${traininginfo.getKey().training.id}" ><button type="button" class="btn btn-primary ">Dodaj ćwiczenie</button></a> </th>--%>
@@ -61,7 +61,7 @@
                <th>Serie</th>
                <th>Powtórzenia</th>
                <th>Ciężar</th>
-<%--               <th>Actions</th>--%>
+               <th>Actions</th>
              </tr>
 
              <c:forEach items="${traininginfo.getValue()}" var="exercise">
@@ -70,11 +70,11 @@
                <td>${exercise.sets}</td>
                <td>${exercise.reps}</td>
                <td>${exercise.weight}</td>
-<%--               <td>--%>
+               <td>
 <%--                 <a href="/exercise/edit/${exercise.exercise.id}" ><button type="button" class="btn btn-warning">Edytuj ćwiczenie</button></a>--%>
-<%--                 <a href="/exercise/show/${exercise.exercise.id}" ><button type="button" class="btn btn-success">Szczegóły ćwiczenia</button></a>--%>
+                 <a href="/exercise/show/${exercise.exercise.id}" ><button type="button" class="btn btn-success">Szczegóły ćwiczenia</button></a>
 <%--                 <a href="/training/exercise/delete/${exercise.id}" class="delete-link"><button type="button" class="btn btn-danger">Usuń z treningu</button></a>--%>
-<%--               </td>--%>
+               </td>
              </tr>
              </c:forEach>
            </tbody>

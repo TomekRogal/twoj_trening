@@ -28,15 +28,17 @@ public class TrainingController {
     }
 
     @RequestMapping("/training/all")
-    public String findAll(Model model) {
-        model.addAttribute("trainings", trainingRepository.findAll());
+    public String findAll(@AuthenticationPrincipal CurrentUser customUser, Model model) {
+        model.addAttribute("trainings", trainingRepository.findByUser(customUser.getUser()));
         return "training/all";
     }
 
     @RequestMapping("/training/delete/{id}")
-    public String delete(@PathVariable Long id, Model model) {
+    public String delete(@PathVariable Long id, Model model, @AuthenticationPrincipal CurrentUser customUser) {
         try {
-            trainingRepository.deleteById(id);
+            if(trainingRepository.findById(id).get().getUser().getId().equals(customUser.getUser().getId())) {
+                trainingRepository.deleteById(id);
+            }
             return "redirect:/training/all";
         } catch (Exception e) {
             model.addAttribute("delete", "failed");
@@ -63,10 +65,12 @@ public class TrainingController {
     }
 
     @GetMapping("/training/edit/{id}")
-    public String edit(@PathVariable Long id, Model model) {
+    public String edit(@AuthenticationPrincipal CurrentUser customUser, @PathVariable Long id, Model model) {
         if(trainingRepository.findById(id).isPresent()){
-            model.addAttribute("training", trainingRepository.findById(id).get());
-            return "training/edit";
+            if(trainingRepository.findById(id).get().getUser().getId().equals(customUser.getUser().getId())) {
+                model.addAttribute("training", trainingRepository.findById(id).get());
+                return "training/edit";
+            }
         }
         return "redirect:/training/all";
     }
@@ -81,11 +85,13 @@ public class TrainingController {
     }
 
     @GetMapping("/training/show/{id}")
-    public String show(@PathVariable Long id, Model model) {
+    public String show(@PathVariable Long id, Model model, @AuthenticationPrincipal CurrentUser customUser) {
         if(trainingRepository.findById(id).isPresent()){
-            model.addAttribute("training", trainingRepository.findById(id).get());
-            model.addAttribute("exercises", trainingExerciseRepository.findAllExercisesFromTraining(trainingRepository.findById(id).get()));
-            return "training/show";
+            if(trainingRepository.findById(id).get().getUser().getId().equals(customUser.getUser().getId())) {
+                model.addAttribute("training", trainingRepository.findById(id).get());
+                model.addAttribute("exercises", trainingExerciseRepository.findAllExercisesFromTraining(trainingRepository.findById(id).get()));
+                return "training/show";
+            }
         }
         return "redirect:/training/all";
     }
