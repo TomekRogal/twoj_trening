@@ -26,7 +26,8 @@
 <sec:authorize access="isAuthenticated()">
     <div class="sb-sidenav-footer">
         <div class="small" style="color: white">Zalogowany:</div>
-        <div style="color: white"><sec:authentication property="principal.username"/></div>
+        <div style="color: white">${loggedUser.username}</div>
+<%--        <sec:authentication property="principal.username"/>--%>
     </div>
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
         <li class="nav-item dropdown">

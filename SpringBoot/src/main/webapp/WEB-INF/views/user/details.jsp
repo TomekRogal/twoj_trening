@@ -14,13 +14,16 @@
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="card shadow-lg border-0 rounded-lg mt-5">
-              <div class="card-header"><h3 class="text-center font-weight-light my-4">Użytkownik: <sec:authentication property="principal.username"/></h3></div>
+              <div class="card-header"><h3 class="text-center font-weight-light my-4">Użytkownik: ${loggedUser.username}</h3></div>
               <div class="card-body">
                   <div class="text-center">
                     Akcje:
                   </div>
+                <div class="d-flex align-items-center justify-content-between mt-4 mb-4">
+                  <a class="mx-auto" href="/user/edit" ><button type="button" class="btn btn-primary ">Zmień nazwę</button></a>
+                </div>
                   <div class="d-flex align-items-center justify-content-between mt-4 mb-4">
-                    <a class="mx-auto" href="/" ><button type="button" class="btn btn-primary ">Zmień hasło</button></a>
+                    <a class="mx-auto" href="/user/password" ><button type="button" class="btn btn-primary ">Zmień hasło</button></a>
                   </div>
                 <div class="d-flex align-items-center justify-content-between mt-4 mb-4">
                     <a class="mx-auto" href="/user/delete" ><button type="button" class="btn btn-danger ">Usuń konto</button></a>
