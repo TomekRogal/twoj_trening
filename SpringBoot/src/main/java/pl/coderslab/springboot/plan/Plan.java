@@ -1,4 +1,6 @@
 package pl.coderslab.springboot.plan;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.springboot.user.User;
 import javax.persistence.*;

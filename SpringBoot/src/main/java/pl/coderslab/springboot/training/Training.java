@@ -1,5 +1,7 @@
 package pl.coderslab.springboot.training;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import pl.coderslab.springboot.exercise.Exercise;
 import pl.coderslab.springboot.user.User;
 

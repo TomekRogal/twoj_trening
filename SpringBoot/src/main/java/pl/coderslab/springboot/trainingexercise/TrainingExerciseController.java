@@ -6,7 +6,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.springboot.exercise.Exercise;
 import pl.coderslab.springboot.exercise.ExerciseRepository;
-import pl.coderslab.springboot.training.Training;
 import pl.coderslab.springboot.training.TrainingRepository;
 
 
