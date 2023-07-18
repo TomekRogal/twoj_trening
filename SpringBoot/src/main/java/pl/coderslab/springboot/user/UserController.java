@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.springboot.plan.PlanRepository;
+import pl.coderslab.springboot.training.TrainingRepository;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -12,11 +14,15 @@ import javax.validation.Valid;
 public class UserController {
     private final UserService userService;
     private final UserRepository userRepository;
+    private final TrainingRepository trainingRepository;
+    private final PlanRepository planRepository;
 
-    public UserController(UserService userService, UserRepository userRepository) {
+    public UserController(UserService userService, UserRepository userRepository, TrainingRepository trainingRepository, PlanRepository planRepository) {
         this.userService = userService;
         this.userRepository = userRepository;
 
+        this.trainingRepository = trainingRepository;
+        this.planRepository = planRepository;
     }
     @GetMapping("/create-user")
     @ResponseBody
@@ -59,15 +65,23 @@ public class UserController {
        userService.saveUser(user);
         return "redirect:/login";
     }
-    @GetMapping ("/delete")
+    @GetMapping ("/user/delete")
     public String userDelete(){
         return "admin/delete";
     }
-    @PostMapping("/delete")
+    @PostMapping("/user/delete")
     public String delete(@AuthenticationPrincipal CurrentUser customUser, HttpSession session) {
-        userRepository.deleteById(customUser.getUser().getId());
+        User user = customUser.getUser();
+        planRepository.deleteAllFromUser(user);
+        trainingRepository.deleteAllFromUser(user);
+        userRepository.deleteById(user.getId());
         session.invalidate();
         return "redirect:/";
     }
+    @GetMapping ("/user/details")
+    public String userDetails(){
+        return "admin/details";
+    }
+
 }
 

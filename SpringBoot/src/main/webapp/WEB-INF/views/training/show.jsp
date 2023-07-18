@@ -53,7 +53,7 @@
                             <td>
                                 <a href="/training/exercise/edit/${exercise.id}" ><button type="button" class="btn btn-warning">Edytuj</button></a>
                                 <a href="/exercise/show/${exercise.exercise.id}" ><button type="button" class="btn btn-success">Szczegóły ćwiczenia</button></a>
-                                <a href="/training/exercise/delete/${exercise.id}" class="delete-link"><button type="button" class="btn btn-danger">Usuń</button></a>
+                                <a href="/training/exercise/delete/${exercise.id}" class="delete-link"><button type="button" class="btn btn-danger">Usuń z treningu</button></a>
                             </td>
                         </tr>
                     </c:forEach>

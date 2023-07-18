@@ -37,6 +37,7 @@ public class TrainingController {
     public String delete(@PathVariable Long id, Model model, @AuthenticationPrincipal CurrentUser customUser) {
         try {
             if(trainingRepository.findById(id).get().getUser().getId().equals(customUser.getUser().getId())) {
+                trainingExerciseRepository.deleteAllFromTraining(trainingRepository.findById(id).get());
                 trainingRepository.deleteById(id);
             }
             return "redirect:/training/all";
