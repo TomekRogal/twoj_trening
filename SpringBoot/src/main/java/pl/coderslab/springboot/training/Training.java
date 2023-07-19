@@ -1,6 +1,11 @@
 package pl.coderslab.springboot.training;
 
+
+import pl.coderslab.springboot.user.User;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -8,11 +13,31 @@ public class Training {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Pole nie może być puste")
+    @Size(max = 60, message = "Zbyt długa nazwa treningu - masymalnie 60 znaków")
+    @Column(nullable = false, length = 60)
     private String name;
-    private int sets;
+    @Size(max = 255, message = "Zbyt długi opis treningu - masymalnie 255 znaków")
+    private String description;
 
-    private int reps ;
-    private Double weight;
+    public String getDescription() {
+        return description;
+    }
+
+    @ManyToOne
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
@@ -28,29 +53,5 @@ public class Training {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getSets() {
-        return sets;
-    }
-
-    public void setSets(int sets) {
-        this.sets = sets;
-    }
-
-    public int getReps() {
-        return reps;
-    }
-
-    public void setReps(int reps) {
-        this.reps = reps;
-    }
-
-    public Double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Double weight) {
-        this.weight = weight;
     }
 }
