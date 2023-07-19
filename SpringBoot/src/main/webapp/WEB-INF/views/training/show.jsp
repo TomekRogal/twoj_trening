@@ -21,7 +21,7 @@
                     <th class="w-25"><h3>Nazwa treningu:</h3></th>
                     <td style="font-size: 1.5rem">${training.name}</td>
                 </tr>
-                <tr>
+                <tr class="w-auto">
                     <th style="width: 150px"><h5>Opis:</h5></th>
                     <td>${training.description}</td>
                 </tr>

@@ -41,11 +41,13 @@ public class PlanTrainingController {
     @GetMapping("/plan/training/add/{id}")
     public String add(@AuthenticationPrincipal CurrentUser customUser, @PathVariable Long id, Model model) {
         if(planRepository.findById(id).isPresent()){
-            PlanTraining planTraining = new PlanTraining();
-            planTraining.setPlan(planRepository.findById(id).get());
-            model.addAttribute("trainings", trainingRepository.findByUser(customUser.getUser()));
-            model.addAttribute("planTraining", planTraining);
-            return "plantraining/add";
+            if(planRepository.findById(id).get().getUser().getId().equals(customUser.getUser().getId())) {
+                PlanTraining planTraining = new PlanTraining();
+                planTraining.setPlan(planRepository.findById(id).get());
+                model.addAttribute("trainings", trainingRepository.findByUser(customUser.getUser()));
+                model.addAttribute("planTraining", planTraining);
+                return "plantraining/add";
+            }
         }
         return "redirect:/plan/all";
     }
@@ -59,20 +61,24 @@ public class PlanTrainingController {
         return "redirect:/plan/show/" + planTraining.getPlan().getId();
     }
     @RequestMapping("/plan/training/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id, @AuthenticationPrincipal CurrentUser customUser) {
         if(planTrainingRepository.findById(id).isPresent()){
-            PlanTraining planTraining = planTrainingRepository.findById(id).get();
-            planTrainingRepository.deleteById(id);
-            return "redirect:/plan/show/"+planTraining.getPlan().getId();
+            if(planTrainingRepository.findById(id).get().getPlan().getUser().getId().equals(customUser.getUser().getId())) {
+                PlanTraining planTraining = planTrainingRepository.findById(id).get();
+                planTrainingRepository.deleteById(id);
+                return "redirect:/plan/show/" + planTraining.getPlan().getId();
+            }
         }
         return "redirect:/plan/all";
     }
     @GetMapping("/plan/training/edit/{id}")
     public String edit(@AuthenticationPrincipal CurrentUser customUser, @PathVariable Long id, Model model) {
         if(planTrainingRepository.findById(id).isPresent()){
-            model.addAttribute("planTraining", planTrainingRepository.findById(id).get());
-            model.addAttribute("trainings", trainingRepository.findByUser(customUser.getUser()));
-            return "plantraining/edit";
+            if(planTrainingRepository.findById(id).get().getPlan().getUser().getId().equals(customUser.getUser().getId())) {
+                model.addAttribute("planTraining", planTrainingRepository.findById(id).get());
+                model.addAttribute("trainings", trainingRepository.findByUser(customUser.getUser()));
+                return "plantraining/edit";
+            }
         }
         return "redirect:/plan/all";
     }

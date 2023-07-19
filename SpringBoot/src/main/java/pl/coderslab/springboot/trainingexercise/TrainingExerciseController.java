@@ -1,5 +1,6 @@
 package pl.coderslab.springboot.trainingexercise;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.springboot.exercise.Exercise;
 import pl.coderslab.springboot.exercise.ExerciseRepository;
 import pl.coderslab.springboot.training.TrainingRepository;
-
+import pl.coderslab.springboot.user.CurrentUser;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -28,14 +29,16 @@ public class TrainingExerciseController {
         return exerciseRepository.findAll();
     }
     @GetMapping("/training/exercise/add/{id}")
-    public String add(@PathVariable Long id, Model model) {
+    public String add(@PathVariable Long id, Model model, @AuthenticationPrincipal CurrentUser customUser) {
         TrainingExercise trainingExercise = new TrainingExercise();
         if(trainingRepository.findById(id).isPresent()){
-            trainingExercise.setTraining(trainingRepository.findById(id).get());
-            model.addAttribute("trainingExercise", trainingExercise);
-            return "trainingexercise/add";
+            if(trainingRepository.findById(id).get().getUser().getId().equals(customUser.getUser().getId())) {
+                trainingExercise.setTraining(trainingRepository.findById(id).get());
+                model.addAttribute("trainingExercise", trainingExercise);
+                return "trainingexercise/add";
+            }
         }
-        return "redirect:/training/show/id";
+        return "redirect:/training/show/"+id;
     }
 
     @PostMapping("/training/exercise/add")
@@ -47,19 +50,23 @@ public class TrainingExerciseController {
         return "redirect:/training/show/" +trainingExercise.getTraining().getId();
     }
     @RequestMapping("/training/exercise/delete/{id}")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id, @AuthenticationPrincipal CurrentUser customUser) {
         if(trainingExerciseRepository.findById(id).isPresent()){
-            TrainingExercise trainingExercise = trainingExerciseRepository.findById(id).get();
-            trainingExerciseRepository.deleteById(id);
-            return "redirect:/training/show/"+trainingExercise.getTraining().getId();
+            if(trainingExerciseRepository.findById(id).get().getTraining().getUser().getId().equals(customUser.getUser().getId())) {
+                TrainingExercise trainingExercise = trainingExerciseRepository.findById(id).get();
+                trainingExerciseRepository.deleteById(id);
+                return "redirect:/training/show/" + trainingExercise.getTraining().getId();
+            }
         }
         return "redirect:/training/all";
     }
     @GetMapping("/training/exercise/edit/{id}")
-    public String edit(@PathVariable Long id, Model model) {
+    public String edit(@PathVariable Long id, Model model, @AuthenticationPrincipal CurrentUser customUser) {
         if(trainingExerciseRepository.findById(id).isPresent()){
-            model.addAttribute("trainingExercise", trainingExerciseRepository.findById(id).get());
-            return "trainingexercise/edit";
+            if(trainingExerciseRepository.findById(id).get().getTraining().getUser().getId().equals(customUser.getUser().getId())) {
+                model.addAttribute("trainingExercise", trainingExerciseRepository.findById(id).get());
+                return "trainingexercise/edit";
+            }
         }
         return "redirect:/training/all";
     }

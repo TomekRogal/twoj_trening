@@ -17,6 +17,7 @@ public class Training {
     @Size(max = 60, message = "Zbyt długa nazwa treningu - masymalnie 60 znaków")
     @Column(nullable = false, length = 60)
     private String name;
+    @Size(max = 255, message = "Zbyt długi opis treningu - masymalnie 255 znaków")
     private String description;
 
     public String getDescription() {

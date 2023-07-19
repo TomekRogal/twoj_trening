@@ -13,7 +13,7 @@ public class Exercise {
     @Size(max = 60, message = "Zbyt długa nazwa ćwiczenia - masymalnie 60 znaków")
     @Column(nullable = false , length = 60)
     private String name;
-
+    @Size(max = 255, message = "Zbyt długi opis ćwiczenia - masymalnie 255 znaków")
     private String description;
     public String getDescription() {
         return description;
