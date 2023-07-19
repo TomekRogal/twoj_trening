@@ -120,5 +120,9 @@ public class UserController {
         model.addAttribute("users" , userRepository.findAll());
         return "user/all";
     }
+    @GetMapping ("/activate")
+    public String activate(){
+        return "user/activate";
+    }
 }
 
