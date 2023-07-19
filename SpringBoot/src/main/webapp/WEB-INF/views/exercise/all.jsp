@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<script type="text/javascript"  src='<c:url value="/scripts/delete.js"/>'></script>
+<script type="text/javascript"  src='<c:url value="/js/delete.js"/>'></script>
 <html>
   <jsp:include page="/wid/head.jsp"/>
   <body class="sb-nav-fixed">
@@ -14,7 +14,7 @@
             <div class="card mb-4">
                 <div class="ms-auto px-2 mt-5" >
 <sec:authorize access="hasRole('ADMIN')">
-                <a href="/exercise/add" ><button type="button" class="btn btn-primary ">Dodaj ćwiczenie</button></a>
+                <a href="/exercises/add" ><button type="button" class="btn btn-primary ">Dodaj ćwiczenie</button></a>
 </sec:authorize>
                 </div>
                 <div class="card-header">
@@ -37,11 +37,11 @@
             <td>${exercise.description}</td>
             <td>
                 <sec:authorize access="hasRole('ADMIN')">
-                <a href="/exercise/edit/${exercise.id}" ><button type="button" class="btn btn-warning">Edytuj</button></a>
+                <a href="/exercises/edit/${exercise.id}" ><button type="button" class="btn btn-warning">Edytuj</button></a>
                 </sec:authorize>
                 <a href="/exercise/show/${exercise.id}" ><button type="button" class="btn btn-success">Szczegóły</button></a>
                 <sec:authorize access="hasRole('ADMIN')">
-                <a href="/exercise/delete/${exercise.id}" class="delete-link"><button type="button" class="btn btn-danger">Usuń</button></a>
+                <a href="/exercises/delete/${exercise.id}" class="delete-link"><button type="button" class="btn btn-danger">Usuń</button></a>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
 <%--                <a href="/training/exercise/add" ><button type="button" class="btn btn-primary">Dodaj do treningu</button></a>--%>

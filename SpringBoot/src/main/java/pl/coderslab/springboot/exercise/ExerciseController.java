@@ -22,7 +22,7 @@ public class ExerciseController {
         model.addAttribute("exercises", exerciseRepository.findAll());
         return "exercise/all";
     }
-    @RequestMapping("/exercise/delete/{id}")
+    @RequestMapping("/exercises/delete/{id}")
     public String delete(@PathVariable Long id, Model model) {
         try {
             exerciseRepository.deleteById(id);
@@ -32,13 +32,13 @@ public class ExerciseController {
         }
         return "forward:/exercise/all";
     }
-    @GetMapping("/exercise/add")
+    @GetMapping("/exercises/add")
     public String add(Model model) {
         model.addAttribute("exercise", new Exercise());
         return "exercise/add";
     }
 
-    @PostMapping("/exercise/add")
+    @PostMapping("/exercises/add")
     public String addProcess(@Valid Exercise exercise, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "exercise/add";
@@ -46,7 +46,7 @@ public class ExerciseController {
         exerciseRepository.save(exercise);
         return "redirect:/exercise/all";
     }
-    @GetMapping("/exercise/edit/{id}")
+    @GetMapping("/exercises/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {
         if(exerciseRepository.findById(id).isPresent()){
             model.addAttribute("exercise", exerciseRepository.findById(id).get());
@@ -55,7 +55,7 @@ public class ExerciseController {
         return "redirect:/exercise/all";
     }
 
-    @PostMapping("/exercise/edit/{id}")
+    @PostMapping("/exercises/edit/{id}")
     public String editProcess(@Valid Exercise exercise, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "exercise/edit";

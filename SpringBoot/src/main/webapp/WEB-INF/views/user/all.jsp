@@ -10,35 +10,37 @@
     <jsp:include page="/wid/menuleft.jsp"/>
     <div id="layoutSidenav_content">
         <div class="card mb-4">
-            <div class="ms-auto px-2 mt-5" >
-                <a href="/plan/add" ><button type="button" class="btn btn-primary ">Dodaj plan</button></a>
             </div>
             <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                <h2>Twoje plany:</h2>
+                <h2>Użytkownicy:</h2>
             </div>
             <div class="card-body">
-                <table id="tableplans" class="table">
+                <table id="datatable" class="table">
                     <thead>
                     <tr>
-                        <th>Nazwa</th>
-                        <th>Data rozpoczęcia</th>
-                        <th>Czas trwania - tygodnie</th>
+                        <th>Nazwa użytkownika</th>
+                        <th>Aktywny</th>
                         <th>Akcje</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${plans}" var="plan">
+                    <c:forEach items="${users}" var="user">
                         <tr>
-                                            <td>${plan.name}</td>
-                                            <td>${plan.startDate}</td>
-                                            <td>${plan.weeks}</td>
-                            <td>
-                                <a href="/plan/edit/${plan.id}" ><button type="button" class="btn btn-warning">Edytuj</button></a>
-                                <a href="/plan/show/${plan.id}" ><button type="button" class="btn btn-success">Szczegóły</button></a>
-                                <a href="/plan/delete/${plan.id}" class="delete-link"><button type="button" class="btn btn-danger">Usuń</button></a>
+                            <td>${user.username}</td>
+                            <c:if test="${user.enabled == 1}">
+                                <td>Tak</td>
+                                <td>
+                                    <a href="/users/enabled/${user.id}" class="delete-link"><button type="button" class="btn btn-secondary">Ustaw nieaktywny</button></a>
+                                </td>
+                            </c:if>
+                            <c:if test="${user.enabled == 0}">
+                                <td>Nie</td>
+                                <td>
+                                <a href="/users/delete/${user.id}" class="delete-link"><button type="button" class="btn btn-danger">Usuń użytkownika</button></a>
+                                </td>
+                            </c:if>
 
-                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -51,4 +53,3 @@
 <jsp:include page="/wid/scripts.jsp"/>
 </body>
 </html>
-

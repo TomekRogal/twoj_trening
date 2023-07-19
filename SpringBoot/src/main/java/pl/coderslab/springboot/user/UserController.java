@@ -27,15 +27,6 @@ public class UserController {
         this.planRepository = planRepository;
         this.passwordEncoder = passwordEncoder;
     }
-    @GetMapping("/create-user")
-    @ResponseBody
-    public String createUser() {
-        User user = new User();
-        user.setUsername("admin");
-        user.setPassword("admin");
-        userService.saveUser(user);
-        return "admin";
-    }
     @GetMapping("/login")
     public String login(){
         return "user/login";
@@ -123,6 +114,11 @@ public class UserController {
 
         userService.saveUser(user);
         return "redirect:/";
+    }
+    @GetMapping("/users/all")
+    public String allUsers(Model model){
+        model.addAttribute("users" , userRepository.findAll());
+        return "user/all";
     }
 }
 

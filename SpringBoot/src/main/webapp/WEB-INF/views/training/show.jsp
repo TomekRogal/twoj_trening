@@ -3,7 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form"
            uri="http://www.springframework.org/tags/form" %>
-<script type="text/javascript"  src='<c:url value="/scripts/delete.js"/>'></script>
+<script type="text/javascript"  src='<c:url value="/js/delete.js"/>'></script>
 <html>
 <jsp:include page="/wid/head.jsp"/>
 <body class="sb-nav-fixed">
@@ -49,7 +49,7 @@
                                             <td>${exercise.exercise.name}</td>
                                             <td>${exercise.sets}</td>
                                             <td>${exercise.reps}</td>
-                                            <td>${exercise.weight}</td>
+                                            <td>${exercise.weight} kg</td>
                             <td>
                                 <a href="/training/exercise/edit/${exercise.id}" ><button type="button" class="btn btn-warning">Edytuj</button></a>
                                 <a href="/exercise/show/${exercise.exercise.id}" ><button type="button" class="btn btn-success">Szczegóły ćwiczenia</button></a>

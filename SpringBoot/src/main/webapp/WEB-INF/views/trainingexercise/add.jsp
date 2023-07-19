@@ -3,7 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form"
            uri="http://www.springframework.org/tags/form" %>
-<script type="text/javascript"  src='<c:url value="/scripts/delete.js"/>'></script>
+<script type="text/javascript"  src='<c:url value="/js/delete.js"/>'></script>
 <html>
 <jsp:include page="/wid/head.jsp"/>
 <body class="sb-nav-fixed">
@@ -29,7 +29,7 @@
               <form:errors cssStyle="color: red" path="sets"/><br>
               Powtórzenia: <form:input cssClass="form-control" type="number" path="reps"/>
               <form:errors cssStyle="color: red" path="reps"/><br>
-              Ciężar: <form:input cssClass="form-control" type="number" step="0.01" path="weight"/>
+              Ciężar: <form:input cssClass="form-control" type="number" step="0.25" path="weight"/>
               <form:errors cssStyle="color: red" path="weight"/><br>
               <input class="btn btn-primary" type="submit" value="Dodaj">
             </form:form>

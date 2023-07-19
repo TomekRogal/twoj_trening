@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<script type="text/javascript"  src='<c:url value="/scripts/delete.js"/>'></script>
+<script type="text/javascript"  src='<c:url value="/js/delete.js"/>'></script>
 <html>
 <jsp:include page="/wid/head.jsp"/>
 <body class="sb-nav-fixed">

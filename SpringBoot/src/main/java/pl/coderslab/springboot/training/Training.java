@@ -1,13 +1,11 @@
 package pl.coderslab.springboot.training;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-import pl.coderslab.springboot.exercise.Exercise;
+
 import pl.coderslab.springboot.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDate;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -16,12 +14,15 @@ public class Training {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "Pole nie może być puste")
+    @Size(max = 60, message = "Zbyt długa nazwa treningu - masymalnie 60 znaków")
+    @Column(nullable = false, length = 60)
     private String name;
     private String description;
 
     public String getDescription() {
         return description;
     }
+
     @ManyToOne
     private User user;
 

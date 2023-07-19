@@ -1,5 +1,6 @@
 package pl.coderslab.springboot.plantraining;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,9 +9,8 @@ import pl.coderslab.springboot.dayname.DayName;
 import pl.coderslab.springboot.dayname.DayNameRepository;
 import pl.coderslab.springboot.plan.Plan;
 import pl.coderslab.springboot.plan.PlanRepository;
-import pl.coderslab.springboot.training.Training;
 import pl.coderslab.springboot.training.TrainingRepository;
-import pl.coderslab.springboot.trainingexercise.TrainingExercise;
+import pl.coderslab.springboot.user.CurrentUser;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -29,10 +29,7 @@ public class PlanTrainingController {
         this.dayNameRepository = dayNameRepository;
         this.planRepository = planRepository;
     }
-    @ModelAttribute("trainings")
-    public List<Training> trainings() {
-        return trainingRepository.findAll();
-    }
+
     @ModelAttribute("days")
     public List<DayName> dayNames() {
         return dayNameRepository.findAll();
@@ -42,10 +39,11 @@ public class PlanTrainingController {
         return planRepository.findAll();
     }
     @GetMapping("/plan/training/add/{id}")
-    public String add(@PathVariable Long id, Model model) {
+    public String add(@AuthenticationPrincipal CurrentUser customUser, @PathVariable Long id, Model model) {
         if(planRepository.findById(id).isPresent()){
             PlanTraining planTraining = new PlanTraining();
             planTraining.setPlan(planRepository.findById(id).get());
+            model.addAttribute("trainings", trainingRepository.findByUser(customUser.getUser()));
             model.addAttribute("planTraining", planTraining);
             return "plantraining/add";
         }
@@ -70,9 +68,10 @@ public class PlanTrainingController {
         return "redirect:/plan/all";
     }
     @GetMapping("/plan/training/edit/{id}")
-    public String edit(@PathVariable Long id, Model model) {
+    public String edit(@AuthenticationPrincipal CurrentUser customUser, @PathVariable Long id, Model model) {
         if(planTrainingRepository.findById(id).isPresent()){
             model.addAttribute("planTraining", planTrainingRepository.findById(id).get());
+            model.addAttribute("trainings", trainingRepository.findByUser(customUser.getUser()));
             return "plantraining/edit";
         }
         return "redirect:/plan/all";

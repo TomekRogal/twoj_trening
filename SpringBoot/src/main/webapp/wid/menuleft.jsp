@@ -39,6 +39,12 @@
           </nav>
         </div>
 </sec:authorize>
+<sec:authorize access="hasRole('ADMIN')">
+          <a class="nav-link" href="/users/all">
+              <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
+              UŻYTKOWNICY
+          </a>
+</sec:authorize>
       </div>
     </div>
   </nav>

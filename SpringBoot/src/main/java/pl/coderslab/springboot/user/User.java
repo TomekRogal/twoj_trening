@@ -4,6 +4,7 @@ import pl.coderslab.springboot.role.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -12,10 +13,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "Nazwa użytkownika nie może być pusta")
+    @Size(max = 60, message = "Zbyt długa nazwa użytkownika - masymalnie 60 znaków")
     @Column(nullable = false, unique = true, length = 60)
     private String username;
+    @Column(nullable = false)
     @NotBlank(message = "Hasło nie może być puste")
     private String password;
+    @Column(nullable = false)
     private int enabled;
     @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
