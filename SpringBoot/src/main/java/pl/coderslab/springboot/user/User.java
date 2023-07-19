@@ -16,8 +16,7 @@ public class User {
     @Size(max = 60, message = "Zbyt długa nazwa użytkownika - masymalnie 60 znaków")
     @Column(nullable = false, unique = true, length = 60)
     private String username;
-    @Column(nullable = false, length = 60)
-    @Size(max = 20, message = "Zbyt długie hasło - masymalnie 60 znaków")
+    @Column(nullable = false)
     @NotBlank(message = "Hasło nie może być puste")
     private String password;
     @Column(nullable = false)

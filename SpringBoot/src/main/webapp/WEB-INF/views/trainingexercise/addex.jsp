@@ -12,19 +12,19 @@
   <jsp:include page="/wid/menuleft.jsp"/>
   <div id="layoutSidenav_content">
     <div class="ms-auto px-2 mt-5" >
-      <a href="/training/show/${trainingExercise.training.id}" ><button type="button" class="btn btn-primary ">Powrót</button></a>
+      <a href="/exercise/all" ><button type="button" class="btn btn-primary ">Powrót</button></a>
     </div>
-    <h1 class="mt-5 d-flex justify-content-center">Dodaj ćwiczenie do treningu: ${trainingExercise.training.name} </h1>
+    <h1 class="mt-5 d-flex justify-content-center">Dodaj ćwiczenie ${trainingExercise.exercise.name} do treningu:</h1>
     <div class="container mt-5">
       <div class="row justify-content-center">
         <div class="col-lg-5">
           <div class="card shadow-lg border-0 rounded-lg mt-5">
             <form:form method="post"
-                       modelAttribute="trainingExercise" action="/training/exercise/add">
+                       modelAttribute="trainingExercise" action="/training/exercise/addex">
               <form:hidden path="id"/>
-              <form:hidden path="training"/>
-              Ćwiczenie: <form:select cssClass="form-control" itemLabel="name" itemValue="id" path="exercise" items="${exercises}"/>
-              <form:errors cssStyle="color: red"  path="exercise"/><br>
+              <form:hidden path="exercise"/>
+              Trening: <form:select cssClass="form-control" itemLabel="name" itemValue="id" path="training" items="${trainings}"/>
+              <form:errors cssStyle="color: red"  path="training"/><br>
               Serie: <form:input cssClass="form-control" type="number" path="sets"/>
               <form:errors cssStyle="color: red" path="sets"/><br>
               Powtórzenia: <form:input cssClass="form-control" type="number" path="reps"/>

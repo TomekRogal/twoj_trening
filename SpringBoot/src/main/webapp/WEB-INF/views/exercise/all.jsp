@@ -44,7 +44,7 @@
                 <a href="/exercises/delete/${exercise.id}" class="delete-link"><button type="button" class="btn btn-danger">Usuń</button></a>
                 </sec:authorize>
                 <sec:authorize access="isAuthenticated()">
-<%--                <a href="/training/exercise/add" ><button type="button" class="btn btn-primary">Dodaj do treningu</button></a>--%>
+                <a href="/training/exercise/addex/${exercise.id}" ><button type="button" class="btn btn-primary">Dodaj do treningu</button></a>
                 </sec:authorize>
             </td>
         </tr>

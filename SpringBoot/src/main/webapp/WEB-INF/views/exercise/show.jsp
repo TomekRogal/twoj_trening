@@ -14,7 +14,7 @@
     <div class="card mb-4 ">
       <div class="ms-auto px-2 mt-5" >
 
-          <a href="/exercise/all" ><button type="button" class="btn btn-primary ">Lista ćwiczeń</button></a>
+          <a href="/exercise/all" class="" ><button type="button" class="btn btn-primary ">Lista ćwiczeń</button></a>
       </div>
       <div class="card-header">
         <h1>Ćwiczenie: </h1> <h2 class="text-center mt-5"> ${exercise.name}</h2>
@@ -24,7 +24,7 @@
           <div class="card-header">
               <p class="text-center"><h3>Opis:</h3></p>
           </div>
-          <div class="card-body text-center">${exercise.description}</div>
+          <div class="card-body text-center w-25 mx-auto">${exercise.description}</div>
       </div>
     <jsp:include page="/wid/footer.jsp"/>
   </div>

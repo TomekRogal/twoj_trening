@@ -30,9 +30,10 @@
                             <td>${user.username}</td>
                             <c:if test="${user.enabled == 1}">
                                 <td>Tak</td>
-                                <td>
-                                    <a href="/users/enabled/${user.id}" class="delete-link"><button type="button" class="btn btn-secondary">Ustaw nieaktywny</button></a>
-                                </td>
+                                <td>Brak</td>
+<%--                                <td>--%>
+<%--                                    <a href="/users/enabled/${user.id}" class="delete-link"><button type="button" class="btn btn-secondary">Ustaw nieaktywny</button></a>--%>
+<%--                                </td>--%>
                             </c:if>
                             <c:if test="${user.enabled == 0}">
                                 <td>Nie</td>

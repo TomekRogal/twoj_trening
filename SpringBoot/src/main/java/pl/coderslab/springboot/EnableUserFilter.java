@@ -1,6 +1,5 @@
 package pl.coderslab.springboot;
 
-import org.springframework.stereotype.Component;
 import pl.coderslab.springboot.user.User;
 
 import javax.servlet.*;

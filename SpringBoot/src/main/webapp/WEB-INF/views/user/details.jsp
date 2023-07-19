@@ -26,7 +26,7 @@
                     <a class="mx-auto" href="/user/password" ><button type="button" class="btn btn-primary ">Zmień hasło</button></a>
                   </div>
                 <div class="d-flex align-items-center justify-content-between mt-4 mb-4">
-                    <a class="mx-auto" href="/user/delete" ><button type="button" class="btn btn-danger ">Usuń konto</button></a>
+                    <a class="mx-auto" href="/user/inactivate" ><button type="button" class="btn btn-warning ">Dezaktywuj konto</button></a>
                   </div>
               </div>
               <div class="card-footer text-center py-3">

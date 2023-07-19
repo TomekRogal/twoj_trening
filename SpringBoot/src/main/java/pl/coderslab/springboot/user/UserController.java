@@ -56,18 +56,17 @@ public class UserController {
        userService.saveUser(user);
         return "redirect:/login";
     }
-    @GetMapping ("/user/delete")
-    public String userDelete(){
-        return "user/delete";
-    }
-    @PostMapping("/user/delete")
-    public String delete(@AuthenticationPrincipal CurrentUser customUser, HttpSession session) {
-        User user = customUser.getUser();
-        planRepository.deleteAllFromUser(user);
-        trainingRepository.deleteAllFromUser(user);
-        userRepository.deleteById(user.getId());
-        session.invalidate();
-        return "redirect:/";
+    @GetMapping ("/users/delete/{id}")
+    public String userDelete(@PathVariable Long id){
+        if(userRepository.findById(id).isPresent()){
+            User user = userRepository.findById(id).get();
+            if(user.getEnabled()==0){
+                planRepository.deleteAllFromUser(user);
+                trainingRepository.deleteAllFromUser(user);
+                userRepository.deleteById(user.getId());
+            }
+        }
+        return "redirect:/users/all";
     }
     @GetMapping ("/user/details")
     public String userDetails(){
@@ -124,5 +123,24 @@ public class UserController {
     public String activate(){
         return "user/activate";
     }
-}
 
+    @PostMapping ("/activate")
+    public String activateProcess(@AuthenticationPrincipal CurrentUser customUser){
+        User user = userRepository.findById(customUser.getUser().getId()).get();
+        user.setEnabled(1);
+        userRepository.save(user);
+         return "redirect:/";
+    }
+    @GetMapping ("/user/inactivate")
+    public String inactivate(){
+        return "user/inactivate";
+    }
+    @PostMapping ("/user/inactivate")
+    public String inactivateProcess(@AuthenticationPrincipal CurrentUser customUser, HttpSession session){
+        User user = userRepository.findById(customUser.getUser().getId()).get();
+        user.setEnabled(0);
+        userRepository.save(user);
+        session.invalidate();
+        return "redirect:/";
+    }
+}

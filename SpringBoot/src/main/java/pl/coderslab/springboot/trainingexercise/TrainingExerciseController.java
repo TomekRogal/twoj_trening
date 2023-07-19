@@ -79,4 +79,23 @@ public class TrainingExerciseController {
         trainingExerciseRepository.save(trainingExercise);
         return "redirect:/training/show/" + trainingExercise.getTraining().getId();
     }
+    @GetMapping("/training/exercise/addex/{id}")
+    public String addex(@PathVariable Long id, Model model, @AuthenticationPrincipal CurrentUser customUser) {
+        TrainingExercise trainingExercise = new TrainingExercise();
+        if(exerciseRepository.findById(id).isPresent()){
+                trainingExercise.setExercise(exerciseRepository.findById(id).get());
+                model.addAttribute("trainings",trainingRepository.findByUser(customUser.getUser()));
+                model.addAttribute("trainingExercise", trainingExercise);
+                return "trainingexercise/addex";
+        }
+        return "redirect:/exercise/all";
+    }
+    @PostMapping("/training/exercise/addex")
+    public String addexProcess(@Valid TrainingExercise trainingExercise, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "trainingexercise/addex";
+        }
+        trainingExerciseRepository.save(trainingExercise);
+        return "redirect:/exercise/all";
+    }
 }

@@ -4,6 +4,7 @@ import pl.coderslab.springboot.exercise.Exercise;
 import pl.coderslab.springboot.training.Training;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 @Entity
@@ -20,7 +21,8 @@ public class TrainingExercise {
     @Min(value = 1, message = "Wartość musi być liczbą całkowitą większą od 0")
     private int reps ;
     @Min(value = 1, message = "Wartość musi być liczbą większą od 0")
-    @Column(scale = 2)
+    @Max(value = 999 , message = "Wartość musi być liczbą mniejszą lub równą 999")
+    @Column(precision = 5, scale = 2)
     private Double weight;
 
     public Long getId() {
