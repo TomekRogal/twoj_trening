@@ -24,6 +24,7 @@ public class PlanTraining {
     @ManyToOne
     private DayName dayName;
     @Min(value = 1, message = "Wartość musi być liczbą całkowitą większą od 0")
+    @NotNull (message = "Pole nie może być puste")
     private int week;
 
     public int getWeek() {

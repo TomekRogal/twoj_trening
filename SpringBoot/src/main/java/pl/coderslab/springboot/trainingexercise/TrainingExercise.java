@@ -4,9 +4,7 @@ import pl.coderslab.springboot.exercise.Exercise;
 import pl.coderslab.springboot.training.Training;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 @Entity
 public class TrainingExercise {
@@ -20,12 +18,15 @@ public class TrainingExercise {
     @ManyToOne
     private Exercise exercise;
     @Min(value = 1, message = "Wartość musi być liczbą całkowitą większą od 0")
+    @NotNull(message = "Pole nie może być puste")
     private int sets;
     @Min(value = 1, message = "Wartość musi być liczbą całkowitą większą od 0")
+    @NotNull(message = "Pole nie może być puste")
     private int reps;
     @Min(value = 0, message = "Wartość musi być liczbą większą lub równą 0")
     @Max(value = 999, message = "Wartość musi być liczbą mniejszą lub równą 999")
     @Column(precision = 5, scale = 2)
+    @NotNull(message = "Pole nie może być puste")
     private Double weight;
 
     public Long getId() {

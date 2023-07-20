@@ -4,10 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.springboot.user.User;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 
@@ -24,6 +21,7 @@ public class Plan {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     @Min(value = 1, message = "Długość planu musi być liczbą całkowitą większą od 0")
+    @NotNull(message = "Pole nie może być puste")
     private int weeks;
     @ManyToOne
     @NotNull

@@ -5,6 +5,7 @@ import pl.coderslab.springboot.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 
@@ -19,13 +20,13 @@ public class Training {
     private String name;
     @Size(max = 255, message = "Zbyt długi opis treningu - masymalnie 255 znaków")
     private String description;
+    @ManyToOne
+    @NotNull
+    private User user;
 
     public String getDescription() {
         return description;
     }
-
-    @ManyToOne
-    private User user;
 
     public User getUser() {
         return user;
