@@ -124,7 +124,10 @@ public class UserController {
         return "user/all";
     }
     @GetMapping ("/activate")
-    public String activate(){
+    public String activate(@AuthenticationPrincipal CurrentUser customUser){
+        if(userRepository.findById(customUser.getUser().getId()).get().getEnabled()!=0){
+            return "redirect:/";
+        }
         return "user/activate";
     }
 
