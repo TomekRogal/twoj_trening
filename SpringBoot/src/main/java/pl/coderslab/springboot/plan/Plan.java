@@ -1,12 +1,11 @@
 package pl.coderslab.springboot.plan;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.coderslab.springboot.user.User;
-import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import java.time.LocalDate;
 
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import java.time.LocalDate;
 
 
 @Entity
@@ -16,14 +15,16 @@ public class Plan {
     private Long id;
     @NotBlank(message = "Pole nie może być puste")
     @Size(max = 60, message = "Zbyt długa nazwa planu - masymalnie 60 znaków")
-    @Column(nullable = false , length = 60)
+    @Column(nullable = false, length = 60)
     private String name;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     @Min(value = 1, message = "Długość planu musi być liczbą całkowitą większą od 0")
+    @NotNull(message = "Pole nie może być puste")
     private int weeks;
     @ManyToOne
+    @NotNull
     private User user;
 
     public int getWeeks() {
@@ -45,7 +46,6 @@ public class Plan {
     }
 
 
-
     public Long getId() {
         return id;
     }
@@ -61,6 +61,7 @@ public class Plan {
     public void setName(String name) {
         this.name = name;
     }
+
     public User getUser() {
         return user;
     }

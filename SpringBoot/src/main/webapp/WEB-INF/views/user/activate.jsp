@@ -13,11 +13,13 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-5">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Aktywuj konto</h3></div>
+                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Aktywuj konto</h3>
+                            </div>
                             <div class="card-body">
                                 <form method="post">
                                     <div class="text-center">
-                                        Twoje konto jest nie aktywne i zostanie wkrótce usunięte. Jeżeli w dalszym ciagu chcesz korzystać z aplikacji aktywuj konto.
+                                        Twoje konto jest nie aktywne i zostanie wkrótce usunięte. Jeżeli w dalszym ciagu
+                                        chcesz korzystać z aplikacji aktywuj konto.
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-4">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -38,7 +40,8 @@
         <jsp:include page="/wid/footer.jsp"/>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="/js/scripts.js"></script>
 </body>
 </html>

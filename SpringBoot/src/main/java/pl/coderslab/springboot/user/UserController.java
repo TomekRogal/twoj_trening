@@ -5,9 +5,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.springboot.plan.PlanRepository;
 import pl.coderslab.springboot.training.TrainingRepository;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -120,7 +124,10 @@ public class UserController {
         return "user/all";
     }
     @GetMapping ("/activate")
-    public String activate(){
+    public String activate(@AuthenticationPrincipal CurrentUser customUser){
+        if(userRepository.findById(customUser.getUser().getId()).get().getEnabled()!=0){
+            return "redirect:/";
+        }
         return "user/activate";
     }
 

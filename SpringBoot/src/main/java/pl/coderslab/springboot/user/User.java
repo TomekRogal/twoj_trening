@@ -17,11 +17,12 @@ public class User {
     @Column(nullable = false, unique = true, length = 60)
     private String username;
     @Column(nullable = false)
+    @Size(max = 200, message = "Zbyt długie hasło")
     @NotBlank(message = "Hasło nie może być puste")
     private String password;
     @Column(nullable = false)
     private int enabled;
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REFRESH}, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;

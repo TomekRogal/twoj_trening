@@ -1,4 +1,5 @@
 package pl.coderslab.springboot.plan;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import pl.coderslab.springboot.plantraining.PlanTrainingRepository;
 import pl.coderslab.springboot.trainingexercise.TrainingExercise;
 import pl.coderslab.springboot.trainingexercise.TrainingExerciseRepository;
 import pl.coderslab.springboot.user.CurrentUser;
+
 import javax.validation.Valid;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -29,15 +31,17 @@ public class PlanController {
         this.planTrainingRepository = planTrainingRepository;
         this.trainingExerciseRepository = trainingExerciseRepository;
     }
+
     @RequestMapping("/plan/all")
     public String findAll(@AuthenticationPrincipal CurrentUser customUser, Model model) {
         model.addAttribute("plans", planRepository.findByUser(customUser.getUser()));
         return "plan/all";
     }
+
     @RequestMapping("/plan/delete/{id}")
     public String delete(@PathVariable Long id, @AuthenticationPrincipal CurrentUser customUser) {
-        if(planRepository.findById(id).isPresent()){
-            if(planRepository.findById(id).get().getUser().getId().equals(customUser.getUser().getId())){
+        if (planRepository.findById(id).isPresent()) {
+            if (planRepository.findById(id).get().getUser().getId().equals(customUser.getUser().getId())) {
                 planTrainingRepository.deleteAllFromPlan(planRepository.findById(id).get());
                 planRepository.deleteById(id);
                 return "redirect:/plan/all";
@@ -45,8 +49,9 @@ public class PlanController {
         }
         return "redirect:/plan/all";
     }
+
     @GetMapping("/plan/add")
-    public String add(@AuthenticationPrincipal CurrentUser customUser ,Model model) {
+    public String add(@AuthenticationPrincipal CurrentUser customUser, Model model) {
         Plan plan = new Plan();
         plan.setUser(customUser.getUser());
         model.addAttribute("plan", plan);
@@ -54,17 +59,20 @@ public class PlanController {
     }
 
     @PostMapping("/plan/add")
-    public String addProcess(@Valid Plan plan, BindingResult bindingResult) {
+    public String addProcess(@AuthenticationPrincipal CurrentUser customUser, @Valid Plan plan, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "plan/add";
         }
-        planRepository.save(plan);
+        if(plan.getUser().getId().equals(customUser.getUser().getId())){
+            planRepository.save(plan);
+        }
         return "redirect:/plan/all";
     }
+
     @GetMapping("/plan/edit/{id}")
     public String edit(@PathVariable Long id, Model model, @AuthenticationPrincipal CurrentUser customUser) {
-        if(planRepository.findById(id).isPresent()){
-            if(planRepository.findById(id).get().getUser().getId().equals(customUser.getUser().getId())) {
+        if (planRepository.findById(id).isPresent()) {
+            if (planRepository.findById(id).get().getUser().getId().equals(customUser.getUser().getId())) {
                 model.addAttribute("plan", planRepository.findById(id).get());
                 return "plan/edit";
             }
@@ -73,17 +81,20 @@ public class PlanController {
     }
 
     @PostMapping("/plan/edit/{id}")
-    public String editProcess(@Valid Plan plan, BindingResult bindingResult) {
+    public String editProcess(@Valid Plan plan, BindingResult bindingResult, @AuthenticationPrincipal CurrentUser customUser) {
         if (bindingResult.hasErrors()) {
             return "plan/edit";
         }
-        planRepository.save(plan);
+        if(plan.getUser().getId().equals(customUser.getUser().getId())) {
+            planRepository.save(plan);
+        }
         return "redirect:/plan/all";
     }
+
     @GetMapping("/plan/show/{id}")
     public String show(@PathVariable Long id, Model model, @AuthenticationPrincipal CurrentUser customUser) {
-        if(planRepository.findById(id).isPresent()){
-            if(planRepository.findById(id).get().getUser().getId().equals(customUser.getUser().getId())) {
+        if (planRepository.findById(id).isPresent()) {
+            if (planRepository.findById(id).get().getUser().getId().equals(customUser.getUser().getId())) {
                 model.addAttribute("plan", planRepository.findById(id).get());
                 Map<PlanTraining, List<TrainingExercise>> te = new LinkedHashMap<>();
                 List<PlanTraining> allTrainingsFromPlan = planTrainingRepository.findAllTrainingsFromPlan(planRepository.findById(id).get());

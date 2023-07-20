@@ -17,18 +17,20 @@
                             <div class="card-body">
                                 <form method="post">
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputUser" type="text" name="username" placeholder="Nazwa użytkownika" />
+                                        <input class="form-control" id="inputUser" type="text" name="username"
+                                               placeholder="Nazwa użytkownika"/>
                                         <label for="inputUser">Nazwa użytkownika</label>
                                     </div>
 
                                     <div class="form-floating mb-3">
-                                        <input class="form-control" id="inputPassword" type="password" name="password" placeholder="Hasło" />
+                                        <input class="form-control" id="inputPassword" type="password" name="password"
+                                               placeholder="Hasło"/>
                                         <label for="inputPassword">Hasło</label>
                                     </div>
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <c:if test="${param.error != null}">
                                         <div id="error">
-                                            <p  style="color:red" > Nieprawidłowa nazwa użytkownika lub hasło</p>
+                                            <p style="color:red"> Nieprawidłowa nazwa użytkownika lub hasło</p>
                                         </div>
                                     </c:if>
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
@@ -51,8 +53,9 @@
         <jsp:include page="/wid/footer.jsp"/>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="/js/scripts.js"></script>
 </body>
 </html>
 
