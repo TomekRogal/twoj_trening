@@ -10,7 +10,8 @@ import java.util.List;
 
 
 public interface TrainingRepository extends JpaRepository<Training, Long> {
-List<Training> findByUser(User user);
+    List<Training> findByUser(User user);
+
     @Modifying
     @Transactional
     @Query("delete Training t where t.user = ?1")

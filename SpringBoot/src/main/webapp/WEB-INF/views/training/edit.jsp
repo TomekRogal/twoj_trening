@@ -3,7 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form"
            uri="http://www.springframework.org/tags/form" %>
-<script type="text/javascript"  src='<c:url value="/js/delete.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/delete.js"/>'></script>
 <html>
 <jsp:include page="/wid/head.jsp"/>
 <body class="sb-nav-fixed">
@@ -11,8 +11,10 @@
 <div id="layoutSidenav">
     <jsp:include page="/wid/menuleft.jsp"/>
     <div id="layoutSidenav_content">
-        <div class="ms-auto px-2 mt-5" >
-            <a href="/training/all" ><button type="button" class="btn btn-primary ">Lista treningów</button></a>
+        <div class="ms-auto px-2 mt-5">
+            <a href="/training/all">
+                <button type="button" class="btn btn-primary ">Lista treningów</button>
+            </a>
         </div>
         <h1 class="mt-5 d-flex justify-content-center">Edytuj trening:</h1>
         <div class="container mt-5">
@@ -25,7 +27,8 @@
                             <form:hidden path="user"/>
                             Nazwa: <form:input cssClass="form-control" path="name" placeholder="Nazwa treningu"/>
                             <form:errors cssStyle="color: red" path="name"/><br>
-                            Opis: <form:textarea cssClass="form-control" rows="5" path="description" placeholder="Krótki opis"/>
+                            Opis: <form:textarea cssClass="form-control" rows="5" path="description"
+                                                 placeholder="Krótki opis"/>
                             <form:errors cssStyle="color: red" path="description"/><br>
                             <input class="btn btn-primary" type="submit" value="Edytuj">
                         </form:form>

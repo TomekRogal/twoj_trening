@@ -3,7 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form"
            uri="http://www.springframework.org/tags/form" %>
-<script type="text/javascript"  src='<c:url value="/js/delete.js"/>'></script>
+<script type="text/javascript" src='<c:url value="/js/delete.js"/>'></script>
 <html>
 <jsp:include page="/wid/head.jsp"/>
 <body class="sb-nav-fixed">
@@ -11,11 +11,14 @@
 <div id="layoutSidenav">
     <jsp:include page="/wid/menuleft.jsp"/>
     <div id="layoutSidenav_content">
-        <div class="ms-auto px-2 mt-5" >
-            <a href="/training/show/${trainingExercise.training.id}" ><button type="button" class="btn btn-primary ">Powrót</button></a>
+        <div class="ms-auto px-2 mt-5">
+            <a href="/training/show/${trainingExercise.training.id}">
+                <button type="button" class="btn btn-primary ">Powrót</button>
+            </a>
 
         </div>
-        <h1 class="mt-5 d-flex justify-content-center">Edytuj ćwiczenie, trening: ${trainingExercise.training.name}  </h1>
+        <h1 class="mt-5 d-flex justify-content-center">Edytuj ćwiczenie,
+            trening: ${trainingExercise.training.name}  </h1>
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-lg-5">
@@ -24,8 +27,9 @@
                                    modelAttribute="trainingExercise" action="/training/exercise/edit">
                             <form:hidden path="id"/>
                             <form:hidden path="training"/>
-                            Ćwiczenie: <form:select cssClass="form-control" itemLabel="name" itemValue="id" path="exercise" items="${exercises}"/>
-                            <form:errors cssStyle="color: red"  path="exercise"/><br>
+                            Ćwiczenie: <form:select cssClass="form-control" itemLabel="name" itemValue="id"
+                                                    path="exercise" items="${exercises}"/>
+                            <form:errors cssStyle="color: red" path="exercise"/><br>
                             Serie: <form:input cssClass="form-control" type="number" path="sets"/>
                             <form:errors cssStyle="color: red" path="sets"/><br>
                             Powtórzenia: <form:input cssClass="form-control" type="number" path="reps"/>

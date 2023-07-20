@@ -19,8 +19,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String hello(@AuthenticationPrincipal CurrentUser customUser, Model model) {
-        if(customUser != null){
-            model.addAttribute("loggedUser",userRepository.findById(customUser.getUser().getId()).get());
+        if (customUser != null) {
+            model.addAttribute("loggedUser", userRepository.findById(customUser.getUser().getId()).get());
         }
         return "home/home";
     }

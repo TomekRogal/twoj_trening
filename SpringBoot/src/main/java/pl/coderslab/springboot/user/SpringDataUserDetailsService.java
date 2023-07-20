@@ -18,6 +18,7 @@ public class SpringDataUserDetailsService implements UserDetailsService {
     public SpringDataUserDetailsService(UserService userService) {
         this.userService = userService;
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) {
         User user = userService.findByUserName(username);
@@ -27,7 +28,7 @@ public class SpringDataUserDetailsService implements UserDetailsService {
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         user.getRoles().forEach(r ->
                 grantedAuthorities.add(new SimpleGrantedAuthority(r.getName())));
-        return new CurrentUser(user.getUsername(),user.getPassword(),
+        return new CurrentUser(user.getUsername(), user.getPassword(),
                 grantedAuthorities, user);
 
     }

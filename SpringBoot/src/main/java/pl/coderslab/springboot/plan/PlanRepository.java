@@ -11,6 +11,7 @@ import java.util.List;
 
 public interface PlanRepository extends JpaRepository<Plan, Long> {
     List<Plan> findByUser(User user);
+
     @Modifying
     @Transactional
     @Query("delete Plan p where p.user = ?1")

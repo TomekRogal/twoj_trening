@@ -6,6 +6,7 @@ import pl.coderslab.springboot.training.Training;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -13,10 +14,13 @@ public class PlanTraining {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     @ManyToOne
     private Plan plan;
+    @NotNull
     @ManyToOne
     private Training training;
+    @NotNull
     @ManyToOne
     private DayName dayName;
     @Min(value = 1, message = "Wartość musi być liczbą całkowitą większą od 0")

@@ -13,11 +13,13 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-5">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Dezaktywuj konto</h3></div>
+                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Dezaktywuj
+                                konto</h3></div>
                             <div class="card-body">
                                 <form method="post">
                                     <div class="text-center">
-                                        Dezaktywacja konta spowoduję brak dostępu do wszystkich danych znajdujących się na koncie.
+                                        Dezaktywacja konta spowoduję brak dostępu do wszystkich danych znajdujących się
+                                        na koncie.
                                         Czy chcesz kontynuować?
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-4">
@@ -39,7 +41,8 @@
         <jsp:include page="/wid/footer.jsp"/>
     </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="js/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script src="/js/scripts.js"></script>
 </body>
 </html>

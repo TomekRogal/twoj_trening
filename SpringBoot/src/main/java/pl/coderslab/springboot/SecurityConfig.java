@@ -16,11 +16,12 @@ public class SecurityConfig {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/plan/**","/training/**","/user/**").hasAnyRole("USER","ADMIN")
-                .antMatchers("/exercises/**","users/**").hasRole("ADMIN")
+                .antMatchers("/plan/**", "/training/**", "/user/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/exercises/**", "users/**").hasRole("ADMIN")
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/", true)
                 .and().logout().logoutSuccessUrl("/")
                 .permitAll()
